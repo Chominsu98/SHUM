@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import com.cos.shumstart.domain.booth.Booth;
+import com.cos.shumstart.domain.umbrella.Umbrella;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,18 @@ import org.springframework.stereotype.Repository;
 public class BoothDataDao {
 
     private final BoothRepository boothRepository;
+    private final UmbrellaRepository umbrellaRepository;
 
     public Booth 부스번호(int id) {
         Booth boothEntity = boothRepository.findById(id);
 
         return boothEntity;
+    }
+
+    public Umbrella 우산번호(int id) {
+        Umbrella umbrellaEntity = umbrellaRepository.findById(id);
+
+        return umbrellaEntity;
     }
 
     private Connection conn;

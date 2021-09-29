@@ -14,9 +14,9 @@ public class UmbrellaListController {
 
     private final BoothDataDao boothDataDao;
 
-    @GetMapping("/main/showUmbrella/{id}")
-    public String profile(@PathVariable int id, Model model) {
-        Booth boothEntity = boothDataDao.부스번호(id);
+    @GetMapping("/main/showUmbrella/{boothId}")
+    public String umbrellaList(@PathVariable int boothId, Model model) {
+        Booth boothEntity = boothDataDao.부스번호(boothId);
         model.addAttribute("booth", boothEntity);
         return "/main/showUmbrella";
     }

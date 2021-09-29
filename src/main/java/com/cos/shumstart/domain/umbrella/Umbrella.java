@@ -28,8 +28,4 @@ public class Umbrella {
     @ManyToOne
     @JoinColumn(name="boothId", referencedColumnName = "id")
     private Booth booth;
-
-    @OneToOne
-    @JoinColumn(name="userId", referencedColumnName = "id")
-    private User username;
 }

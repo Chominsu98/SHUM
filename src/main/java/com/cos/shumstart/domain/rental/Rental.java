@@ -1,6 +1,7 @@
-package com.cos.shumstart.domain.user;
+package com.cos.shumstart.domain.rental;
 
 import com.cos.shumstart.domain.umbrella.Umbrella;
+import com.cos.shumstart.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,25 +15,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 @Entity
-public class User {
+public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 20, unique = true)
-    private String username;
-    @Column(nullable = false)
-    private String password;
-    @Column(nullable = false)
-    private String name;
-    @Column(nullable = false)
-    private String email;
-    private String phone;
+    @OneToOne
+    @JoinColumn(name="userId", referencedColumnName = "id")
+    private User user;
 
-    private int money;
-    private boolean state;
-    private int times;
-    private String role;
+    @OneToOne
+    @JoinColumn(name="umbrellaId", referencedColumnName = "id")
+    private Umbrella umbrella;
 
     private LocalDateTime createDate;
 
