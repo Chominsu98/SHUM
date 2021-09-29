@@ -1,4 +1,4 @@
-package com.cos.shumstart.web.umbrellamodel;
+package com.cos.shumstart.web.dto;
 
 import com.cos.shumstart.domain.booth.Booth;
 import com.cos.shumstart.domain.user.User;

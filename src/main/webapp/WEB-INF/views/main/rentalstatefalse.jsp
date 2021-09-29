@@ -14,8 +14,9 @@
 
 						<!--로그인 인풋-->
 						<form class="login__input">
-							<button type="button" onclick="location.href='/main/showBooth'">대여 하기</button>
-							<button type="button" onclick="location.href='/main/showBooth'">부스 위치 확인</button>
+							<button type="button" onclick="location.href='/rental/rentalshowBooth'">대여 하기</button>
+							<button type="button" onclick="location.href='/rental/rentalshowBooth'">부스 위치 확인</button>
+							<button type="button" onclick="location.href='/logout'">로그아웃</button>
 						</form>
 					</div>
 				</article>

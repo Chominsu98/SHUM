@@ -2,8 +2,6 @@ package com.cos.shumstart.web;
 
 import com.cos.shumstart.config.auth.PrincipalDetails;
 import com.cos.shumstart.domain.booth.Booth;
-import com.cos.shumstart.domain.rental.Rental;
-import com.cos.shumstart.domain.umbrella.Umbrella;
 import com.cos.shumstart.domain.user.User;
 import com.cos.shumstart.service.RentalService;
 import com.cos.shumstart.service.BoothService;
@@ -17,34 +15,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RequiredArgsConstructor
 @Controller
-public class UmbrellaRentalController {
+public class UmbrellaRenturnController {
 
     private final BoothService boothService;
     private final RentalService rentalService;
 
-    @GetMapping("/rental/umbrellaRental/{boothId}/{umbrellaId}")
-    public String umbrellaRentalForm(@PathVariable int boothId,
-                                     @PathVariable int umbrellaId,
+    @GetMapping("/return/umbrellaReturn/{boothId}")
+    public String umbrellaReturnForm(@PathVariable int boothId,
                                      @AuthenticationPrincipal PrincipalDetails principalDetails,
                                      Model model) {
 
         Booth boothEntity = boothService.부스번호(boothId);
-        Umbrella umbrellaEntity = boothService.우산번호(umbrellaId);
         User userEntity = principalDetails.getUser();
 
         model.addAttribute("booth", boothEntity);
-        model.addAttribute("umbrella", umbrellaEntity);
         model.addAttribute("user", userEntity);
-        return "/rental/umbrellaRental";
+        return "/return/umbrellaReturn";
     }
 
-    @PostMapping("/rental/umbrellaRental/{boothId}/{umbrellaId}")
-    public String umbrellaRental(@PathVariable int boothId,
-                                 @PathVariable int umbrellaId,
+    @PostMapping("/return/umbrellaReturn/{boothId}")
+    public String umbrellaReturn(@PathVariable int boothId,
                                  @AuthenticationPrincipal PrincipalDetails principalDetails) {
 
-        Rental rental = rentalService.대여하기(principalDetails.getUser().getId(),umbrellaId, boothId);
-
-        return "/main/rentalstatetrue";
+        rentalService.반납하기(principalDetails.getUser().getId(), boothId);
+        return "/main/rentalstatefalse";
     }
 }

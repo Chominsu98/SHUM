@@ -5,16 +5,16 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>부스 위치 확인</title>
+    <title>부스 목록</title>
 </head>
 <body>
-<h2>부스 위치</h2>
+<h2>부스 목록</h2>
 <table border="1">
     <tr>
         <th>부스 이름</th><th>전체 우산</th><th>남은 우산</th><th>고장난 우산</th><th>위도</th><th>경도</th>
     <c:forEach var="s" items="${booth}">
         <tr>
-            <td><button type="button" onclick="location.href='/main/showUmbrella/${s.id}'">${s.boothName}</button></td>
+            <td><button type="button" onclick="location.href='/return/umbrellaReturn/${s.id}'">${s.boothName}</button></td>
             <td>${s.totalUmbrella}</td>
             <td>${s.leftUmbrella}</td>
             <td>${s.brokenUmbrella}</td>

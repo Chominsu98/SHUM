@@ -14,9 +14,10 @@
 
 							<!--로그인 인풋-->
 							<form class="login__input">
-								<button>반납하기</button>
-								<button>부스 위치 확인</button>
+								<button type="button" onclick="location.href='/return/returnshowBooth'">반납하기</button>
+								<button type="button" onclick="location.href='/return/rentalshowBooth'">부스 위치 확인</button>
 								<button>고장 신고</button>
+								<button type="button" onclick="location.href='/logout'">로그아웃</button>
 							</form>
 						</div>
 					</article>

@@ -1,4 +1,4 @@
-package com.cos.shumstart.web.boothmodel;
+package com.cos.shumstart.domain.booth;
 
 import com.cos.shumstart.domain.booth.Booth;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -10,7 +10,7 @@
 <body>
     <h2>우산 대여하기</h2>
 
-    <form action="/main/umbrellaRental/${booth.id}/${umbrella.id}" method="post">
+    <form action="/rental/umbrellaRental/${booth.id}/${umbrella.id}" method="post">
         <h4>${user.name}님의 잔액은 ${user.money}원 입니다. </h4>
         <h4>대여하시겠습니까?</h4>
         <button>대여</button>

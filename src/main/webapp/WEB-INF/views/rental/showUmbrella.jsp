@@ -17,7 +17,7 @@
             <c:when test="${umbrella.rentalState == false && umbrella.brokenState == false}">
                 <tr>
                     <td>${umbrella.umbrellaNumber}번 우산</td>
-                    <td><button type="button" onclick="location.href='/main/umbrellaRental/${booth.id}/${umbrella.id}'">대여하기</button></td>
+                    <td><button type="button" onclick="location.href='/rental/umbrellaRental/${booth.id}/${umbrella.id}'">대여하기</button></td>
                 </tr>
             </c:when>
         </c:choose>

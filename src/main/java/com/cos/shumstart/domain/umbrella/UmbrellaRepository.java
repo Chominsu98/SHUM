@@ -1,4 +1,4 @@
-package com.cos.shumstart.web.boothmodel;
+package com.cos.shumstart.domain.umbrella;
 
 import com.cos.shumstart.domain.umbrella.Umbrella;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,11 +9,11 @@ public interface UmbrellaRepository extends JpaRepository<Umbrella, Integer> {
     Umbrella findById(int id);
 
     @Modifying
-    @Query("UPDATE Umbrella u SET u.booth = null WHERE u.id = :id")
+    @Query("UPDATE Umbrella u SET u.booth.id = null WHERE u.id = :id")
     int updateBoothIdRental(int id);
 
     @Modifying
-    @Query("UPDATE Umbrella u SET u.booth = :boothId WHERE u.id = :id")
+    @Query("UPDATE Umbrella u SET u.booth.id = :boothId WHERE u.id = :id")
     int updateBoothIdReturn(int boothId, int id);
 
     @Modifying

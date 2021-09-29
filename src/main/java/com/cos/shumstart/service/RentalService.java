@@ -6,8 +6,8 @@ import com.cos.shumstart.domain.rental.RentalRepository;
 import com.cos.shumstart.domain.umbrella.Umbrella;
 import com.cos.shumstart.domain.user.User;
 import com.cos.shumstart.domain.user.UserRepository;
-import com.cos.shumstart.web.boothmodel.BoothRepository;
-import com.cos.shumstart.web.boothmodel.UmbrellaRepository;
+import com.cos.shumstart.domain.booth.BoothRepository;
+import com.cos.shumstart.domain.umbrella.UmbrellaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +44,24 @@ public class RentalService {
         userRepository.updateState(true, userId);
 
         return rentalRepository.save(rental);
+    }
+
+    @Transactional
+    public void 반납하기(int userId, int boothId) {
+
+        User userEntity = userRepository.findById(userId);
+        Rental rentalEntity = rentalRepository.findByUserId(userId);
+        Booth boothEntity = boothRepository.findById(boothId);
+        Umbrella umbrellaEntity = umbrellaRepository.findById(rentalEntity.getUmbrella().getId());
+
+        int leftUmbrella = boothEntity.getLeftUmbrella();
+        boothRepository.updateLeftUmbrella(++leftUmbrella, boothId);
+
+        umbrellaRepository.updateBoothIdReturn(boothId, umbrellaEntity.getId());
+        umbrellaRepository.updateRentalState(false, umbrellaEntity.getId());
+
+        userRepository.updateState(false, userId);
+
+        rentalRepository.rentalDelete(userId, umbrellaEntity.getId());
     }
 }

@@ -1,4 +1,4 @@
-package com.cos.shumstart.web.boothmodel;
+package com.cos.shumstart.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,15 +8,17 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import com.cos.shumstart.domain.booth.Booth;
+import com.cos.shumstart.domain.booth.BoothRepository;
 import com.cos.shumstart.domain.umbrella.Umbrella;
-import lombok.NoArgsConstructor;
+import com.cos.shumstart.domain.umbrella.UmbrellaRepository;
+import com.cos.shumstart.web.dto.BoothDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
 @Repository
-public class BoothDataDao {
+public class BoothService {
 
     private final BoothRepository boothRepository;
     private final UmbrellaRepository umbrellaRepository;
@@ -40,7 +42,7 @@ public class BoothDataDao {
     @Autowired
     private DataSource dataSource;
 
-    public ArrayList<BoothDto> getDataAll(){
+    public ArrayList<BoothDto> 부스목록(){
         ArrayList<BoothDto> list = new ArrayList<BoothDto>();
         try {
             String sql = "select * from booth";
