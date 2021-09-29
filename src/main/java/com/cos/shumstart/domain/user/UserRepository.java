@@ -12,4 +12,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying
     @Query("UPDATE User u SET u.state = :state WHERE u.id = :id")
     int updateState(boolean state, int id);
+
+    @Modifying
+    @Query("UPDATE User u SET u.money = :money WHERE u.id = :id")
+    int updateMoney(int money, int id);
 }

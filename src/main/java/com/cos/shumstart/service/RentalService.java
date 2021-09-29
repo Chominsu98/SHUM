@@ -42,6 +42,8 @@ public class RentalService {
         umbrellaRepository.updateRentalState(true, umbrellaId);
 
         userRepository.updateState(true, userId);
+        int money = userEntity.getMoney();
+        userRepository.updateMoney(money - 1000, userId);
 
         return rentalRepository.save(rental);
     }

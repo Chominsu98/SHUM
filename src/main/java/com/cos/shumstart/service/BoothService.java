@@ -23,13 +23,13 @@ public class BoothService {
     private final BoothRepository boothRepository;
     private final UmbrellaRepository umbrellaRepository;
 
-    public Booth 부스번호(int id) {
+    public Booth 부스정보(int id) {
         Booth boothEntity = boothRepository.findById(id);
 
         return boothEntity;
     }
 
-    public Umbrella 우산번호(int id) {
+    public Umbrella 우산정보(int id) {
         Umbrella umbrellaEntity = umbrellaRepository.findById(id);
 
         return umbrellaEntity;

@@ -17,6 +17,7 @@
 								<button type="button" onclick="location.href='/return/returnshowBooth'">반납하기</button>
 								<button type="button" onclick="location.href='/return/rentalshowBooth'">부스 위치 확인</button>
 								<button>고장 신고</button>
+								<button type="button" onclick="location.href='/charge/charge'">돈 충전</button>
 								<button type="button" onclick="location.href='/logout'">로그아웃</button>
 							</form>
 						</div>

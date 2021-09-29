@@ -15,6 +15,12 @@ public class AuthService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    public User 유저정보(int id) {
+        User userEntity = userRepository.findById(id);
+
+        return userEntity;
+    }
+
     @Transactional
     public User 회원가입(User user) {
         String rawPassword = user.getPassword();

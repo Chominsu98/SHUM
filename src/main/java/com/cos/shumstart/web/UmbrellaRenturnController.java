@@ -25,7 +25,7 @@ public class UmbrellaRenturnController {
                                      @AuthenticationPrincipal PrincipalDetails principalDetails,
                                      Model model) {
 
-        Booth boothEntity = boothService.부스번호(boothId);
+        Booth boothEntity = boothService.부스정보(boothId);
         User userEntity = principalDetails.getUser();
 
         model.addAttribute("booth", boothEntity);
