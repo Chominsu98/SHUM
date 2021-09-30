@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>우산 같이 쓸래요?</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    />
+    <style>
+        .footer {
+            text-align: center;
+        }
+
+        .footer button {
+            width: 90%;
+            height: 100px;
+            margin-top: 20px;
+            font-size: 40px;
+            border-radius: 20px;
+            background-color: black;
+            color: white;
+        }
+
+        #my_modal {
+            display : none;
+            z-index : 100;
+            left : 0;
+            top : 0;
+            width: 130%;
+            height: 100%;
+            overflow: auto;
+
+            /*레이어 색갈은 여기서 바꾸면 됨*/
+            background-color: rgba(0,0,0,0.4);
+        }
+
+
+        #my_modal .my_modal_wbg {
+            margin: 150px 80px 150px 80px;
+            background-color: white;
+
+            width: 64%;
+        }
+
+        .search_booth {
+            position: absolute;
+            top: 200px;
+            left: 20%;
+
+            font-size: 70px;
+        }
+        .modal_header img {
+            position: absolute;
+            top: 225px;
+            left: 10%;
+
+            width: 50px;
+            height: 50px;
+        }
+
+        .modal_header input {
+            display: inline-block;
+
+            margin-top: 200px;
+            margin-left: 40px;
+
+            width: 600px;
+            height: 70px;
+            border: solid 1px gray;
+
+            font-size: 40px;
+        }
+
+        .modal_header button {
+            display: inline-block;
+
+            margin-left: 10px;
+
+            width: 100px;
+            height: 70px;
+
+            font-size: 40px;
+        }
+
+        .modal_close_btn {
+            font-size: 70px;
+        }
+
+        .search_result {
+            text-align: center;
+        }
+
+        .search_result ul {
+            list-style: none;
+            width: 92%;
+        }
+
+        .search_result li {
+            margin: 20px 0px 20px 0px;
+            height: 100px;
+            padding-top: 30px;
+        }
+
+        .search_result {
+            text-align: center;
+            font-size: 40px;
+            margin: auto 0;
+        }
+
+        .blank {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .getMyPos img {
+            position: absolute;
+            bottom: 180px;
+            left: 40px;
+            width: 150px;
+            height: 150px;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .getMyPos img.up{
+            margin-bottom: 320px;
+        }
+    </style>
+</head>
+<body>
+    <div class="GNB">
+        <div class="menu">
+            <i class="fas fa-bars fa-4x"></i>
+            <div>메뉴</div>
+        </div>
+
+        <div class="logo">
+            <h1>우산 같이 쓸래요?</h1>
+        </div>
+
+        <div class="searchAndMyPage">
+            <div class="search">
+                <i id="search" class="fas fa-search fa-4x"></i>
+                <div>검색</div>
+            </div>
+
+            <div class="myPage">
+                <i id="myPage" class="far fa-user fa-4x"></i>
+                <div>내정보</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mainsource">
+        <div id="map"></div>
+
+        <div id="my_modal">
+            <div class="my_modal_wbg">
+                <div class="modal_header">
+                    <img src="./image/close.png" class="modal_close_btn" />
+                    <div class="search_booth">우산 부스 검색</div>
+
+                    <input type="search" placeholder="부스명을 입력하세요." />
+                    <button>검색</button>
+                </div>
+
+                <div class="search_result">
+                    <span class="blank"></span>
+                    <ul>
+                        <li>검색 결과가 없습니다.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="getMyPos up">
+            <img src="./image/getMyPos.png" alt="내 위치로 화면 이동">
+        </div>
+
+        <div class="reload">
+            <img src="./image/reload.png" alt="새로고침">
+        </div>
+
+        <div class="booth invisible">
+            <input type="hidden" value="0"/>
+            <ul class="boothDesc">
+                <ul id="boothName">
+                    <li>이름</li>
+                </ul>
+                <ul id="boothCount">
+                    <li>보유 갯수 : </li>
+                    <li>대여 가능 갯수 : </li>
+                    <li>점검 상태 : </li>
+                </ul>
+            </ul>
+            <div class="icons">
+                <img src="./image/navigator.png" alt="" id="navigatorIcon">
+                <img src="./image/ticket.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="nearBooth">
+            <a href="nearBooth"><button>주변 부스</button></a>
+        </div>
+    </div>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b2238e5793485dc179dc4a96ebb0bf6d"></script>
+<!--    <script src="./mainMap.js"></script>-->
+    <script>
+        // 각 부스 클릭하면 나오는 자세한 설명
+        function btnBoothDetail(id, name, left, fixed) {
+            var target = document.querySelector('.booth input');
+            var boothDetail = document.querySelector('.booth');
+            var getMyPosBTN = document.querySelector('.getMyPos img');
+            var reloadBTN = document.querySelector('.reload img');
+
+            var exfocusedBoothDesc = document.querySelector(`.desc_booth${target.value}`);
+            var exfocusedBooth = exfocusedBoothDesc.parentNode;
+
+            var focusedBoothDesc = document.querySelector(`.desc_booth${id}`);
+            var focusedBooth = focusedBoothDesc.parentNode;
+
+            //같은거 선택
+            if (target.value === String(id)) {
+                focusedBooth.classList.toggle('focus');
+                boothDetail.classList.toggle('invisible');
+            } else {    //처음 선택, 다른거 선택
+                if (boothDetail.classList.contains('invisible')) {  // 내려가 있는 상태
+                    //alert('2');
+                    focusedBooth.classList.add('focus');
+                    boothDetail.classList.toggle('invisible');
+                }
+                exfocusedBooth.classList.remove('focus');
+                if (!focusedBooth.classList.contains('focus')) {
+                    focusedBooth.classList.add('focus');
+                }
+
+                var boothDesc = document.querySelector('.boothDesc');
+                var desc =
+                    `<ul id="boothName">` +
+                    `<li>${name}</li>` +
+                    `</ul>` +
+                    `<ul id="boothCount">` +
+                    `<li>보유 갯수 : ${left + fixed}</li>` +
+                    `<li>대여 가능 갯수 : ${left}</li>` +
+                    `<li>점검 상태 : ${fixed}</li>` +
+                    `</ul>`;
+                boothDesc.innerHTML = desc;
+                target.value = id;
+                map.panTo(positions[id].latlng);
+            }
+
+            if (boothDetail.classList.contains('invisible')) {
+                // focusedBooth.classList.remove('focus');
+                getMyPosBTN.classList.remove('up');
+                reloadBTN.classList.remove('up');
+            } else {
+                // focusedBooth.classList.add('focus');
+                getMyPosBTN.classList.add('up');
+                reloadBTN.classList.add('up');
+            }
+        }
+
+        // 검색 모달창
+        function modal(id) {
+            var modal = document.getElementById("my_modal");
+            modal.style.position = "fixed";
+            modal.style.display = "flex";
+
+            // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+            modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+                var list = document.querySelector('.search_result ul');
+
+                while ( list.hasChildNodes() )
+                {
+                    list.removeChild (list.firstChild);
+                }
+
+                var li = document.createElement("li")
+                li.appendChild(document.createTextNode("검색 결과가 없습니다."));
+                list.appendChild(li);
+
+                var boothName = document.querySelector(".modal_header input")
+                boothName.value = '';
+                modal.style.display = "none";
+            });
+
+            // modal.setStyle({
+            //    //position: 'fixed',
+            //     display: 'block',
+            //     //boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+            //
+            //     // 시꺼먼 레이어 보다 한칸 위에 보이기
+            //     zIndex: zIndex + 1,
+            //
+            //     // // div center 정렬
+            //     // top: '50%',
+            //     // left: '50%',
+            //     // transform: 'translate(-50%, -50%)',
+            //     // msTransform: 'translate(-50%, -50%)',
+            //     // webkitTransform: 'translate(-50%, -50%)',
+            //
+            //     backgroundColor: "white"
+            // });
+        }
+
+        // // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+        // Element.prototype.setStyle = function(styles) {
+        //     for (var k in styles) this.style[k] = styles[k];
+        //     return this;
+        // };
+
+        document.getElementById('search').addEventListener('click', function() {
+            // 모달창 띄우기
+            modal('my_modal');
+        });
+
+        var container = document.getElementById('map');
+        var options = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667),   //지도의 중심 좌표
+            level: 3    //지도의 확대 레벨1
+        };
+
+        //지도를 생성
+        var map = new kakao.maps.Map(container, options);
+
+        // 우산 부스 위치를 가져옵니다.
+        var positions = [
+            {
+                id: 0,
+                title: '부스4',
+                latlng: new kakao.maps.LatLng(37.5016992, 126.9628928),
+                left: 2,
+                fixed: 1
+            },
+            {
+                id: 1,
+                title: '부스2',
+                latlng: new kakao.maps.LatLng(37.5006992, 126.961888),
+                left: 3,
+                fixed: 2
+            },
+            {
+                id: 2,
+                title: '부스3',
+                latlng: new kakao.maps.LatLng(37.4997811, 126.960111),
+                left: 4,
+                fixed: 3
+            },
+            {
+                id: 3,
+                title: '부스1',
+                latlng :new kakao.maps.LatLng(37.5038888, 126.961767),
+                left: 5,
+                fixed: 4
+            }
+        ]
+
+        if (navigator.geolocation) {
+            var myPos = null;
+            var locPosition = null;
+
+            navigator.geolocation.getCurrentPosition(function(pos) {
+                var lat = pos.coords.latitude; // 위도
+                    lon = pos.coords.longitude; // 경도
+
+                locPosition = new kakao.maps.LatLng(lat, lon);
+
+                var myPosImg = "./image/myPos.png";
+                var imageSize = new kakao.maps.Size(50, 50);
+                var myMarkerImage = new kakao.maps.MarkerImage(myPosImg, imageSize);
+
+                // 내 위치 마커를 생성합니다
+                myPos = new kakao.maps.Marker({
+                    map: map,
+                    position: locPosition,
+                    image: myMarkerImage
+                });
+
+                // 지도 중심좌표를 접속위치로 변경합니다
+                map.setCenter(locPosition)
+
+                displayMarker();
+            });
+        } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+            alert('error');
+        }
+
+        // 지도에 마커와 인포윈도우를 표시하는 함수입니다
+        function displayMarker() {
+            var imageSrc = "https://mblogthumb-phinf.pstatic.net/20160819_217/oceansiren_1471601176631Ysus8_PNG/vector_umbrella-11.png?type=w800";
+            var imageSize = new kakao.maps.Size(100, 110);
+            //부스 위치 마커를 생성합니다.
+            for (var i = 0; i < positions.length; i++) {
+
+                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: positions[i].latlng,
+                    title: positions[i].title,
+                    image: markerImage
+                });
+
+                var booth_id = "desc_booth" + i
+                var content = `<div class="customoverlay">` +
+                    `<div class="${booth_id}" onclick="btnBoothDetail(${i},'${positions[i].title}', ${positions[i].left}, ${positions[i].fixed})">남은 갯수: ${positions[i].left}개</div>` +
+                    `</div>`;
+
+                var customOverlay = new kakao.maps.CustomOverlay({
+                    map: map,
+                    position: positions[i].latlng,
+                    content: content
+                });
+            }
+
+            setInterval(function(){
+                getUserPos();
+            }, 1000);
+
+            //getUserPos(myPos);
+
+        }
+
+        function getUserPos() {
+            if (navigator.geolocation) {
+                // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+                navigator.geolocation.getCurrentPosition(function(pos) {
+                    var lat = pos.coords.latitude, // 위도
+                        lon = pos.coords.longitude; // 경도
+                    locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다.(내 위치)
+
+                    var myPosImg = "./image/myPos.png";
+                    var imageSize = new kakao.maps.Size(50, 50);
+                    var myMarkerImage = new kakao.maps.MarkerImage(myPosImg, imageSize);
+
+                    myPos.setMap(null);
+                    //내 위치 마커를 생성합니다
+                    myPos = new kakao.maps.Marker({
+                        map: map,
+                        position: locPosition,
+                        image: myMarkerImage
+                    });
+                });
+            } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+                alert('error');
+            }
+        }
+
+        function search() {
+            var boothName = document.querySelector(".modal_header input");
+            var isNotChanged = new Boolean(true);
+
+            var list = document.querySelector('.search_result ul');
+
+            while ( list.hasChildNodes() )
+            {
+                list.removeChild (list.firstChild);
+            }
+
+            var i = 0;
+            positions.forEach(position => {
+                for ( key in position) {
+                    if (key === "title" && position[key].includes(boothName.value)) {
+                        isNotChanged = false;
+                        var searchResultList = document.querySelector('.search_result ul');
+                        var li = document.createElement("li");
+                        li.appendChild(document.createTextNode(`${positions[i].title} ( ${positions[i].left}개 )`));
+                        li.onclick = function () {
+                            var modal = document.getElementById("my_modal");
+                            modal.style.display = "none";
+                            btnBoothDetail(position.id, position.title, position.left, position.fixed);
+                        }
+                        searchResultList.appendChild(li);
+                    }
+                }
+                i += 1;
+            })
+            if (isNotChanged) {
+                var li = document.createElement("li")
+                li.appendChild(document.createTextNode("검색 결과가 없습니다."));
+                list.appendChild(li);
+            }
+        }
+
+        var boothNameSearchBTN = document.querySelector(".modal_header button");
+        boothNameSearchBTN.addEventListener('click', function () {
+            search();
+        });
+
+        var getMyPosBTN = document.querySelector('.getMyPos');
+        getMyPosBTN.addEventListener('click', function() {
+            map.panTo(locPosition);
+        });
+
+        var reloadBTN = document.querySelector('.reload');
+        reloadBTN.addEventListener('click', function() {
+            location.reload();
+        });
+
+        var navigatorBTN = document.querySelector('#navigatorIcon');
+        navigatorBTN.addEventListener('click', function() {
+            var target = document.querySelector('.booth input');
+            var booth_id = target.value;
+            location.href=`https://map.kakao.com/link/to/${positions[booth_id].title}, ${positions[booth_id].latlng.getLat()}, ${positions[booth_id].latlng.getLng()}`;
+        });
+
+    </script>
+</body>
+</html>
+<!--${positions[booth_id].latlng.getLat()}, ${positions[booth_id].latlng.getlng()-->
