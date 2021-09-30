@@ -22,6 +22,12 @@ public class RentalService {
     private final UserRepository userRepository;
     private final UmbrellaRepository umbrellaRepository;
 
+    public Rental 대여정보(int userId) {
+        Rental rentalEntity = rentalRepository.findByUserId(userId);
+
+        return rentalEntity;
+    }
+
     @Transactional
     public Rental 대여하기(int userId, int umbrellaId, int boothId) {
 
