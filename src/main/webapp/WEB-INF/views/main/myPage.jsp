@@ -15,10 +15,10 @@
 	<h4>잔액 : ${user.money}원</h4>
 	<c:choose>
 		<c:when test="${user.state == true}">
-			<h4>${umbrella.id}번 우산을 대여 중입니다.</h4>
+			<h4>${umbrella.umbrella.id}번 우산을 대여 중입니다.</h4>
 			<form class="login__input">
 				<button type="button" onclick="location.href='/return/returnshowBooth'">반납하기</button>
-				<button>고장 신고</button>
+				<button type="button" onclick="location.href='/report/breakdownReport'">고장 신고</button>
 				<button type="button" onclick="location.href='/charge/charge'">돈 충전</button>
 				<button type="button" onclick="location.href='/logout'">로그아웃</button>
 			</form>
