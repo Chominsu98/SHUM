@@ -25,12 +25,12 @@ public class AuthController {
 
     @GetMapping("/auth/signin")
     public String signinForm() {
-        return "/auth/signin";
+        return "/auth/signin_new";
     }
 
     @GetMapping("/auth/signup")
     public String signupForm() {
-        return "/auth/signup";
+        return "/auth/signup_new";
     }
 
     // 회원가입버튼 -> /auth/signup -> /auth/signin
@@ -48,7 +48,7 @@ public class AuthController {
         } else {
             User user = signupDto.toEntity();
             User userEntity = authService.회원가입(user);
-            return "/auth/signin";
+            return "/auth/signin_new";
         }
     }
 }

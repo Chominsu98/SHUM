@@ -16,6 +16,8 @@ public class UmbrellaDto {
     private boolean rentalState;
     private boolean brokenState;
 
+    private String umbrellaType;
+
     private Booth boothName;
     private User username;
 }

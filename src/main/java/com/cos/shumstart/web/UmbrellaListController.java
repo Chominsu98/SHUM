@@ -23,6 +23,6 @@ public class UmbrellaListController {
         Booth boothEntity = boothService.부스정보(boothId);
         model.addAttribute("booth", boothEntity);
         model.addAttribute("user", principalDetails.getUser());
-        return "/rental/showUmbrella";
+        return "/rental/showUmbrella_new";
     }
 }

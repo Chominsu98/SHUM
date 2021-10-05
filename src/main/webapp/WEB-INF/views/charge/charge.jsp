@@ -16,7 +16,6 @@
     <button>충전</button>
 </form>
 <button type="button" onclick="location.href='/'">메인 화면으로</button>
-<button type="button" onclick="history.back()">뒤로 가기</button>
 
 </body>
 </html>

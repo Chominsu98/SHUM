@@ -19,7 +19,7 @@ public class BoothListController {
     public ModelAndView rentalBoothList() {
         ArrayList<BoothDto> list = boothService.부스목록();
 
-        return new ModelAndView("/rental/rentalshowBooth", "booth", list);
+        return new ModelAndView("/rental/Listpage", "booth", list);
     }
 
     @GetMapping("/return/returnshowBooth")

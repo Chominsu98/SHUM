@@ -5,7 +5,6 @@ import com.cos.shumstart.domain.booth.Booth;
 import com.cos.shumstart.domain.rental.Rental;
 import com.cos.shumstart.domain.umbrella.Umbrella;
 import com.cos.shumstart.domain.user.User;
-import com.cos.shumstart.domain.user.UserRepository;
 import com.cos.shumstart.service.AuthService;
 import com.cos.shumstart.service.RentalService;
 import com.cos.shumstart.service.BoothService;

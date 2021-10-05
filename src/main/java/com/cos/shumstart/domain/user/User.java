@@ -31,6 +31,7 @@ public class User {
 
     private int money;
     private boolean state;
+    private boolean have_ticket;
     private int times;
     private String role;
 
