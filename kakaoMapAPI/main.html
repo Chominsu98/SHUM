@@ -9,124 +9,6 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
     />
     <style>
-        .footer {
-            text-align: center;
-        }
-
-        .footer button {
-            width: 90%;
-            height: 100px;
-            margin-top: 20px;
-            font-size: 40px;
-            border-radius: 20px;
-            background-color: black;
-            color: white;
-        }
-
-        #my_modal {
-            display : none;
-            z-index : 100;
-            left : 0;
-            top : 0;
-            width: 130%;
-            height: 100%;
-            overflow: auto;
-
-            /*레이어 색갈은 여기서 바꾸면 됨*/
-            background-color: rgba(0,0,0,0.4);
-        }
-
-
-        #my_modal .my_modal_wbg {
-            margin: 150px 80px 150px 80px;
-            background-color: white;
-
-            width: 64%;
-        }
-
-        .search_booth {
-            position: absolute;
-            top: 200px;
-            left: 20%;
-
-            font-size: 70px;
-        }
-        .modal_header img {
-            position: absolute;
-            top: 225px;
-            left: 10%;
-
-            width: 50px;
-            height: 50px;
-        }
-
-        .modal_header input {
-            display: inline-block;
-
-            margin-top: 200px;
-            margin-left: 40px;
-
-            width: 600px;
-            height: 70px;
-            border: solid 1px gray;
-
-            font-size: 40px;
-        }
-
-        .modal_header button {
-            display: inline-block;
-
-            margin-left: 10px;
-
-            width: 100px;
-            height: 70px;
-
-            font-size: 40px;
-        }
-
-        .modal_close_btn {
-            font-size: 70px;
-        }
-
-        .search_result {
-            text-align: center;
-        }
-
-        .search_result ul {
-            list-style: none;
-            width: 92%;
-        }
-
-        .search_result li {
-            margin: 20px 0px 20px 0px;
-            height: 100px;
-            padding-top: 30px;
-        }
-
-        .search_result {
-            text-align: center;
-            font-size: 40px;
-            margin: auto 0;
-        }
-
-        .blank {
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .getMyPos img {
-            position: absolute;
-            bottom: 180px;
-            left: 40px;
-            width: 150px;
-            height: 150px;
-            z-index: 10;
-            cursor: pointer;
-        }
-
-        .getMyPos img.up{
-            margin-bottom: 320px;
-        }
     </style>
 </head>
 <body>
@@ -184,7 +66,7 @@
         </div>
 
         <div class="booth invisible">
-            <input type="hidden" value="0"/>
+            <input type="hidden" value="-1000"/>
             <ul class="boothDesc">
                 <ul id="boothName">
                     <li>이름</li>
@@ -217,8 +99,10 @@
             var getMyPosBTN = document.querySelector('.getMyPos img');
             var reloadBTN = document.querySelector('.reload img');
 
-            var exfocusedBoothDesc = document.querySelector(`.desc_booth${target.value}`);
-            var exfocusedBooth = exfocusedBoothDesc.parentNode;
+            if (target.value != -1000) {
+                var exfocusedBoothDesc = document.querySelector(`.desc_booth${target.value}`);
+                var exfocusedBooth = exfocusedBoothDesc.parentNode;
+            }
 
             var focusedBoothDesc = document.querySelector(`.desc_booth${id}`);
             var focusedBooth = focusedBoothDesc.parentNode;
@@ -233,7 +117,9 @@
                     focusedBooth.classList.add('focus');
                     boothDetail.classList.toggle('invisible');
                 }
-                exfocusedBooth.classList.remove('focus');
+                if (target.value != -1000) {
+                    exfocusedBooth.classList.remove('focus');
+                }
                 if (!focusedBooth.classList.contains('focus')) {
                     focusedBooth.classList.add('focus');
                 }
@@ -332,7 +218,7 @@
             {
                 id: 0,
                 title: '부스4',
-                latlng: new kakao.maps.LatLng(37.5016992, 126.9628928),
+                latlng: new kakao.maps.LatLng(37.5016992, 126.946928),
                 left: 2,
                 fixed: 1
             },
@@ -380,9 +266,6 @@
                     image: myMarkerImage
                 });
 
-                // 지도 중심좌표를 접속위치로 변경합니다
-                map.setCenter(locPosition)
-
                 displayMarker();
             });
         } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
@@ -406,15 +289,23 @@
                 });
 
                 var booth_id = "desc_booth" + i
-                var content = `<div class="customoverlay">` +
+                var content = `<div class="booth_info">` +
                     `<div class="${booth_id}" onclick="btnBoothDetail(${i},'${positions[i].title}', ${positions[i].left}, ${positions[i].fixed})">남은 갯수: ${positions[i].left}개</div>` +
                     `</div>`;
 
-                var customOverlay = new kakao.maps.CustomOverlay({
-                    map: map,
-                    position: positions[i].latlng,
+                var infowindow = new kakao.maps.InfoWindow({
+                    map : map,
+                    position : positions[i].latlng,
                     content: content
-                });
+                })
+
+                infowindow.open(map, marker);
+                map.setCenter(locPosition)
+                // var customOverlay = new kakao.maps.CustomOverlay({
+                //     map: map,
+                //     position: positions[i].latlng,
+                //     content: content
+                // });
             }
 
             setInterval(function(){
