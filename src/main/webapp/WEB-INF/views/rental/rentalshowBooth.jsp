@@ -14,7 +14,7 @@
         <th>부스 이름</th><th>전체 우산</th><th>남은 우산</th><th>고장난 우산</th><th>위도</th><th>경도</th>
     <c:forEach var="s" items="${booth}">
         <tr>
-            <td><button type="button" onclick="location.href='/rental/showUmbrella/${s.id}'">${s.boothName}</button></td>
+            <td><button type="button" onclick="location.href='/rental/showUmbrella_original/${s.id}'">${s.boothName}</button></td>
             <td>${s.totalUmbrella}</td>
             <td>${s.leftFreeUmbrella + s.leftLocationUmbrella}</td>
             <td>${s.brokenUmbrella}</td>

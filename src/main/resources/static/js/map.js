@@ -5,8 +5,10 @@ function btnBoothDetail(id, name, left, fixed) {
     var getMyPosBTN = document.querySelector('.getMyPos img');
     var reloadBTN = document.querySelector('.reload img');
 
-    var exfocusedBoothDesc = document.querySelector(`.desc_booth${target.value}`);
-    var exfocusedBooth = exfocusedBoothDesc.parentNode;
+    if (target.value != -1000) {
+        var exfocusedBoothDesc = document.querySelector(`.desc_booth${target.value}`);
+        var exfocusedBooth = exfocusedBoothDesc.parentNode;
+    }
 
     var focusedBoothDesc = document.querySelector(`.desc_booth${id}`);
     var focusedBooth = focusedBoothDesc.parentNode;
@@ -21,7 +23,9 @@ function btnBoothDetail(id, name, left, fixed) {
             focusedBooth.classList.add('focus');
             boothDetail.classList.toggle('invisible');
         }
-        exfocusedBooth.classList.remove('focus');
+        if (target.value != -1000) {
+            exfocusedBooth.classList.remove('focus');
+        }
         if (!focusedBooth.classList.contains('focus')) {
             focusedBooth.classList.add('focus');
         }
@@ -135,7 +139,7 @@ if (navigator.geolocation) {
         locPosition = new kakao.maps.LatLng(lat, lon);
 
         var myPosImg = "/images/map/myPos.png";
-        var imageSize = new kakao.maps.Size(50, 50);
+        var imageSize = new kakao.maps.Size(25, 25);
         var myMarkerImage = new kakao.maps.MarkerImage(myPosImg, imageSize);
 
         // 내 위치 마커를 생성합니다
@@ -157,7 +161,7 @@ if (navigator.geolocation) {
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다
 function displayMarker() {
     var imageSrc = "/images/map/ping.png";
-    var imageSize = new kakao.maps.Size(45, 70);
+    var imageSize = new kakao.maps.Size(100, 110);
     //부스 위치 마커를 생성합니다.
     for (var i = 0; i < positions.length; i++) {
 
@@ -171,15 +175,23 @@ function displayMarker() {
         });
 
         var booth_id = "desc_booth" + i
-        var content = `<div class="customoverlay">` +
-            `<div class="${booth_id}" onclick="btnBoothDetail(${i},'${positions[i].title}', ${positions[i].left}, 0)">남은 갯수: ${positions[i].left}개</div>` +
+        var content = `<div class="booth_info">` +
+            `<div class="${booth_id}" onclick="btnBoothDetail(${i},'${positions[i].title}', ${positions[i].left}, ${positions[i].fixed})">남은 갯수: ${positions[i].left}개</div>` +
             `</div>`;
 
-        var customOverlay = new kakao.maps.CustomOverlay({
-            map: map,
-            position: positions[i].latlng,
+        var infowindow = new kakao.maps.InfoWindow({
+            map : map,
+            position : positions[i].latlng,
             content: content
-        });
+        })
+
+        infowindow.open(map, marker);
+        map.setCenter(locPosition)
+        // var customOverlay = new kakao.maps.CustomOverlay({
+        //     map: map,
+        //     position: positions[i].latlng,
+        //     content: content
+        // });
     }
 
     setInterval(function(){

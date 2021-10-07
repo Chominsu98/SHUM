@@ -25,4 +25,14 @@ public class UmbrellaListController {
         model.addAttribute("user", principalDetails.getUser());
         return "/rental/showUmbrella";
     }
+
+    @GetMapping("/rental/showUmbrella_original/{boothId}")
+    public String umbrellaList2(@PathVariable int boothId,
+                               @AuthenticationPrincipal PrincipalDetails principalDetails,
+                               Model model) {
+        Booth boothEntity = boothService.부스정보(boothId);
+        model.addAttribute("booth", boothEntity);
+        model.addAttribute("user", principalDetails.getUser());
+        return "/rental/showUmbrella_original";
+    }
 }

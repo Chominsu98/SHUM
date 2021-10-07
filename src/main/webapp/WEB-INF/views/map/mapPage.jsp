@@ -70,7 +70,7 @@
 									</div>
 
 									<div class="booth invisible">
-										<input type="hidden" value="0"/>
+										<input type="hidden" value="-1000"/>
 										<ul class="boothDesc">
 											<ul id="boothName">
 												<li>이름</li>
@@ -119,7 +119,7 @@
 	var numberOfBooth = ${boothList.size()};
 
 	<c:forEach var="s" items="${boothList}">
-		var position = new Position(${s.id}, "${s.boothName}", new kakao.maps.LatLng(${s.latitude}, ${s.longitude}), ${s.leftUmbrella}, 0);
+		var position = new Position(${s.id}, "${s.boothName}", new kakao.maps.LatLng(${s.latitude}, ${s.longitude}), ${s.leftFreeUmbrella + s.leftLocationUmbrella}, 0);
 		boothPositions.push(position);
 	</c:forEach>
 
