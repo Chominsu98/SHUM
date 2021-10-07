@@ -41,8 +41,16 @@ public class RentalService {
         rental.setUmbrella(umbrella);
 
         Booth boothEntity = boothRepository.findById(boothId);
-        int leftUmbrella = boothEntity.getLeftUmbrella();
-        boothRepository.updateLeftUmbrella(--leftUmbrella, boothId);
+        Umbrella umbrellaEntity = umbrellaRepository.findById(umbrellaId);
+
+        if(umbrellaEntity.getUmbrellaType().equals("프리Edition")) {
+            int leftUmbrella = boothEntity.getLeftFreeUmbrella();
+            boothRepository.updateLeftFreeUmbrella(--leftUmbrella, boothId);
+        }
+        else {
+            int leftUmbrella = boothEntity.getLeftLocationUmbrella();
+            boothRepository.updateLeftLocationUmbrella(--leftUmbrella, boothId);
+        }
 
         umbrellaRepository.updateBoothIdRental(umbrellaId);
         umbrellaRepository.updateRentalState(true, umbrellaId);
@@ -62,8 +70,14 @@ public class RentalService {
         Booth boothEntity = boothRepository.findById(boothId);
         Umbrella umbrellaEntity = umbrellaRepository.findById(rentalEntity.getUmbrella().getId());
 
-        int leftUmbrella = boothEntity.getLeftUmbrella();
-        boothRepository.updateLeftUmbrella(++leftUmbrella, boothId);
+        if(umbrellaEntity.getUmbrellaType().equals("프리Edition")) {
+            int leftUmbrella = boothEntity.getLeftFreeUmbrella();
+            boothRepository.updateLeftFreeUmbrella(++leftUmbrella, boothId);
+        }
+        else {
+            int leftUmbrella = boothEntity.getLeftLocationUmbrella();
+            boothRepository.updateLeftLocationUmbrella(++leftUmbrella, boothId);
+        }
 
         umbrellaRepository.updateBoothIdReturn(boothId, umbrellaEntity.getId());
         umbrellaRepository.updateRentalState(false, umbrellaEntity.getId());

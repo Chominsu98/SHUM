@@ -48,6 +48,6 @@ public class UmbrellaRentalController {
 
         Rental rental = rentalService.대여하기(principalDetails.getUser().getId(),umbrellaId, boothId);
 
-        return "/main/mainPage";
+        return "/main/rentalStateTrue";
     }
 }

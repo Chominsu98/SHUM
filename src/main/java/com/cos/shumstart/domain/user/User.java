@@ -34,6 +34,8 @@ public class User {
     private int times;
     private String role;
 
+    private boolean haveTicket;
+
     private LocalDateTime createDate;
 
     @PrePersist

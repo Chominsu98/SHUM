@@ -16,7 +16,7 @@
         <tr>
             <td><button type="button" onclick="location.href='/return/umbrellaReturn/${s.id}'">${s.boothName}</button></td>
             <td>${s.totalUmbrella}</td>
-            <td>${s.leftUmbrella}</td>
+            <td>${s.leftFreeUmbrella + s.leftLocationUmbrella}</td>
             <td>${s.brokenUmbrella}</td>
             <td>${s.latitude}</td>
             <td>${s.longitude}</td>

@@ -55,7 +55,8 @@ public class BoothService {
                 dto.setBoothName(rs.getString("boothName"));
                 dto.setLatitude(rs.getDouble("latitude"));
                 dto.setLongitude(rs.getDouble("longitude"));
-                dto.setLeftUmbrella(rs.getInt("leftUmbrella"));
+                dto.setLeftFreeUmbrella(rs.getInt("leftFreeUmbrella"));
+                dto.setLeftLocationUmbrella(rs.getInt("leftLocationUmbrella"));
                 dto.setBrokenUmbrella(rs.getInt("brokenUmbrella"));
                 dto.setTotalUmbrella(rs.getInt("totalUmbrella"));
                 list.add(dto);

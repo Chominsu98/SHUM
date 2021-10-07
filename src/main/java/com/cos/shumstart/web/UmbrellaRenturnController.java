@@ -38,6 +38,6 @@ public class UmbrellaRenturnController {
                                  @AuthenticationPrincipal PrincipalDetails principalDetails) {
 
         rentalService.반납하기(principalDetails.getUser().getId(), boothId);
-        return "/main/mainPage";
+        return "/main/rentalStateFalse";
     }
 }

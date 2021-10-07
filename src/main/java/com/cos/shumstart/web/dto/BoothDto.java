@@ -17,6 +17,9 @@ public class BoothDto {
     private double longitude;
 
     private int totalUmbrella;
-    private int leftUmbrella;
+
+    private int leftFreeUmbrella;
+    private int leftLocationUmbrella;
+
     private int brokenUmbrella;
 }

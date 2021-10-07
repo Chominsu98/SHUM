@@ -3,9 +3,11 @@ package com.cos.shumstart.web;
 import com.cos.shumstart.config.auth.PrincipalDetails;
 import com.cos.shumstart.domain.rental.Rental;
 import com.cos.shumstart.domain.user.User;
+import com.cos.shumstart.domain.voucher.Voucher;
 import com.cos.shumstart.service.AuthService;
 import com.cos.shumstart.service.ChargeService;
 import com.cos.shumstart.service.RentalService;
+import com.cos.shumstart.service.VoucherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -22,10 +24,20 @@ public class MainController {
     private final RentalService rentalService;
     private final AuthService authService;
     private final ChargeService chargeService;
+    private final VoucherService voucherService;
 
-    @GetMapping({"/","/main", "/main/mainPage","/main/rentalstatetrue", "/main/rentalstatefalse"})
-    public String main() {
-        return "/main/mainPage";
+    @GetMapping({"/","/main", "/main/mainPage","/main/rentalStateTrue", "/main/rentalStateFalse"})
+    public String main(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+        User userEntity = authService.유저정보(principalDetails.getUser().getId());
+
+        boolean state = userEntity.isState();
+
+        if(state == true) {
+            return "/main/rentalStateTrue";
+        }
+        else {
+            return "/main/rentalStateFalse";
+        }
     }
 
     @GetMapping("/main/myPage")
@@ -39,17 +51,14 @@ public class MainController {
 
             model.addAttribute("umbrella", rentalEntity);
         }
+
+        if(userEntity.isHaveTicket() == true) {
+            Voucher voucherEntity = voucherService.이용권정보(userEntity.getId());
+
+            model.addAttribute("voucher", voucherEntity);
+        }
         return "/main/myPage";
     }
 
-    @GetMapping("/charge/charge")
-    public String chargeForm() {
-        return "/charge/charge";
-    }
 
-    @PostMapping("/charge/charge")
-    public String charge(@Valid Integer chargeMoney, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        chargeService.충전하기(chargeMoney.intValue(), principalDetails.getUser().getId());
-        return "/main/mainPage";
-    }
 }

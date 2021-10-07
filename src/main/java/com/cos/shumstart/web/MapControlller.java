@@ -17,12 +17,12 @@ public class MapControlller {
     @Autowired
     private BoothService boothService;
 
-    @GetMapping("/map/samplemap")
-    public ModelAndView sampleMapForm() {
+    @GetMapping("/map/mapPage")
+    public ModelAndView showMap(){
 
         ArrayList<BoothDto> list = boothService.부스목록();
 
-        return new ModelAndView("/map/samplemap", "boothList", list);
+        return new ModelAndView("/map/mapPage", "boothList", list);
     }
 
     @GetMapping("/map/nearBoothPage")

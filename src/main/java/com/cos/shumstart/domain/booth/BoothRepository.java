@@ -9,6 +9,10 @@ public interface BoothRepository extends JpaRepository<Booth, Integer> {
     Booth findById(int id);
 
     @Modifying
-    @Query("UPDATE Booth b SET b.leftUmbrella = :leftUmbrella WHERE b.id = :id")
-    int updateLeftUmbrella(int leftUmbrella, int id);
+    @Query("UPDATE Booth b SET b.leftFreeUmbrella = :leftFreeUmbrella WHERE b.id = :id")
+    int updateLeftFreeUmbrella(int leftFreeUmbrella, int id);
+
+    @Modifying
+    @Query("UPDATE Booth b SET b.leftLocationUmbrella = :leftLocationUmbrella WHERE b.id = :id")
+    int updateLeftLocationUmbrella(int leftLocationUmbrella, int id);
 }
