@@ -85,7 +85,7 @@
 					</a>
 				</li>
 				<li class="far fa-bell">
-					<a href="#" class="">
+					<a href="/report/breakdownReport" class="">
 						<h3>신고하기</h3>
 						<p>현 우산의 상태가 점검이 필요할 것으로 신고합니다.</p>
 					</a>

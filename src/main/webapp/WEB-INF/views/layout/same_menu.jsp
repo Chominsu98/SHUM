@@ -2,7 +2,7 @@
          pageEncoding="UTF-8"%>
 <!-- Header -->
 <header id="header">
-    <h1><a href="/main/map">SHUM💧</a></h1>
+    <h1><a href="/">SHUM💧</a></h1>
     <nav id="nav">
         <ul>
             <li class="special">

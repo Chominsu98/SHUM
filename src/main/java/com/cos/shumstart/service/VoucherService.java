@@ -31,6 +31,8 @@ public class VoucherService {
     private PreparedStatement pstmt;
     private ResultSet rs;
 
+    private double lateFeeStack;
+
     @Autowired
     private DataSource dataSource;
 
@@ -89,6 +91,47 @@ public class VoucherService {
                 if(returnTime.isBefore(LocalDateTime.now())) {
                     voucherRepository.voucherDelete(userId);
                     userRepository.updateHaveTicket(false, userId);
+                }
+            }
+        }
+    }
+
+    @Scheduled(fixedRateString = "5000")
+    @Transactional
+    public void 연체료부과() {
+        ArrayList<Integer> userIdList = new ArrayList<>();
+
+        try {
+            String sql = "select * from user";
+            conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while(rs.next()) {
+                userIdList.add(rs.getInt("id"));
+            }
+        } catch (Exception e) {
+            System.out.println("getDataAll err : " + e);
+        }finally {
+            try {
+                if(rs != null) rs.close();
+                if(pstmt != null) pstmt.close();
+                if(conn != null) conn.close();
+            } catch (Exception e2) {
+                // TODO: handle exception
+            }
+        }
+
+        for(int i = 0; i < userIdList.size(); i++) {
+            User userEntity = userRepository.findById(userIdList.get(i).intValue());
+
+            if(userEntity.isHaveTicket() == false && userEntity.isState() == true) {
+                lateFeeStack += 0.695;
+
+                int lateFee = userEntity.getLateFee();
+                System.out.println(lateFeeStack);
+                if(lateFeeStack >= 500) {
+                    userRepository.updateLateFee(lateFee + 500, userEntity.getId());
+                    lateFeeStack = 0;
                 }
             }
         }
