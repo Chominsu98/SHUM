@@ -113,56 +113,94 @@
             <div class="inner">
                 <c:choose>
                     <c:when test="${user.haveTicket == true}">
-                        <c:set var="returnTime" value="${voucher.createDate}"/>
-                        <%
-                            LocalDateTime returnTime = (LocalDateTime)pageContext.getAttribute("returnTime");
+                        <c:choose>
+                            <c:when test="${voucher.voucherStartDate != null}">
+                                <c:set var="returnTime" value="${voucher.voucherStartDate}"/>
+                                <%
+                                    LocalDateTime returnTime = (LocalDateTime)pageContext.getAttribute("returnTime");
 
-                            returnTime = returnTime.plusDays(1);
-                            System.out.println(returnTime);
+                                    returnTime = returnTime.plusDays(1);
+                                    System.out.println(returnTime);
 
-                            long hour, min, sec;
+                                    long hour, min, sec;
 
-                            Duration duration = Duration.between(LocalDateTime.now(), returnTime);
-                            sec = duration.getSeconds();
+                                    Duration duration = Duration.between(LocalDateTime.now(), returnTime);
+                                    sec = duration.getSeconds();
 
-                            min = sec / 60;
-                            sec = sec % 60;
+                                    min = sec / 60;
+                                    sec = sec % 60;
 
-                            hour = min / 60;
-                            min = min % 60;
-                        %>
-                        <table class="table table-hover">
-                            <thead class="head-background">
+                                    hour = min / 60;
+                                    min = min % 60;
+                                %>
+                                <table class="table table-hover">
+                                    <thead class="head-background">
 
-                            <tr >
-                                <th colspan=2 scope="col">예약번호:12345432345</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="moveto_ticket">
-                                <th scope="row">🌧이용권명:</th>
-                                <td>📆${voucher.ticketType}</td>
+                                    <tr >
+                                        <th colspan=2 scope="col">예약번호:12345432345</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="moveto_ticket">
+                                        <th scope="row">🌧이용권명:</th>
+                                        <td>📆${voucher.ticketType}</td>
 
-                            </tr>
-                            <tr class="moveto_ticket">
-                                <th scope="row">🌧사용가능시간:</th>
-                                <td>🕒24시간</td>
+                                    </tr>
+                                    <tr class="moveto_ticket">
+                                        <th scope="row">🌧사용가능시간:</th>
+                                        <td>🕒24시간</td>
 
-                            </tr>
-                            <tr>
-                                <th scope="row">📢남은시간</th>
-                                <td>🕒<%=hour%>시간 <%=min%>분</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">📢남은시간</th>
+                                        <td>🕒<%=hour%>시간 <%=min%>분</td>
 
-                            </tr>
-                            <tr>
-                                <th scope="row">📢이용자명</th>
-                                <td>😀${user.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">📢이용자명</th>
+                                        <td>😀${user.name}</td>
 
-                            </tr>
-                            </tbody>
-                        </table>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </c:when>
+                            <c:otherwise>
+                                <table class="table table-hover">
+                                    <thead class="head-background">
+
+                                    <tr >
+                                        <th colspan=2 scope="col">예약번호:12345432345</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="moveto_ticket">
+                                        <th scope="row">🌧이용권명:</th>
+                                        <td>📆${voucher.ticketType}</td>
+
+                                    </tr>
+                                    <tr class="moveto_ticket">
+                                        <th scope="row">🌧사용가능시간:</th>
+                                        <td>🕒24시간</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">📢남은시간</th>
+                                        <td>🕒사용 전</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">📢이용자명</th>
+                                        <td>😀${user.name}</td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
                     <c:otherwise>
+                        <h2>구매한 이용권이 없습니다.</h2>
+                        <a href="/charge/payform/day" class="button fit ">구매하러 가기</a>
                     </c:otherwise>
                 </c:choose>
             </div>

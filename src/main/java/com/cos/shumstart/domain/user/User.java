@@ -29,7 +29,7 @@ public class User {
     private String email;
     private String phone;
 
-    private int money;
+    private int lateFee;
     private boolean state;
     private int times;
     private String role;

@@ -5,7 +5,6 @@ import com.cos.shumstart.domain.rental.Rental;
 import com.cos.shumstart.domain.user.User;
 import com.cos.shumstart.domain.voucher.Voucher;
 import com.cos.shumstart.service.AuthService;
-import com.cos.shumstart.service.ChargeService;
 import com.cos.shumstart.service.RentalService;
 import com.cos.shumstart.service.VoucherService;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +12,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @Controller
@@ -23,7 +19,6 @@ public class MainController {
 
     private final RentalService rentalService;
     private final AuthService authService;
-    private final ChargeService chargeService;
     private final VoucherService voucherService;
 
     @GetMapping({"/","/main", "/main/mainPage","/main/rentalStateTrue", "/main/rentalStateFalse"})

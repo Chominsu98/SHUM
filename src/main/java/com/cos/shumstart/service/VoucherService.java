@@ -52,7 +52,7 @@ public class VoucherService {
         return voucherRepository.save(qrcode);
     }
 
-    @Scheduled(fixedRateString = "1000")
+    @Scheduled(fixedRateString = "5000")
     @Transactional
     public void 이용권기간만료() {
         ArrayList<VoucherDto> list = new ArrayList<>();
@@ -80,12 +80,16 @@ public class VoucherService {
 
         for(int i = 0; i < list.size(); i++) {
             Voucher voucherEntity = voucherRepository.findById(list.get(i).getId());
-            LocalDateTime returnTime = voucherEntity.getCreateDate().plusDays(1);
-            int userId = voucherEntity.getUser().getId();
 
-            if(returnTime.isBefore(LocalDateTime.now())) {
-                voucherRepository.voucherDelete(userId);
-                userRepository.updateHaveTicket(false, userId);
+            LocalDateTime voucherStartTime = voucherEntity.getVoucherStartDate();
+            if(voucherStartTime != null) {
+                LocalDateTime returnTime = voucherEntity.getVoucherStartDate().plusDays(1);
+                int userId = voucherEntity.getUser().getId();
+
+                if(returnTime.isBefore(LocalDateTime.now())) {
+                    voucherRepository.voucherDelete(userId);
+                    userRepository.updateHaveTicket(false, userId);
+                }
             }
         }
     }

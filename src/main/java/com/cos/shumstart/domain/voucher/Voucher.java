@@ -25,6 +25,8 @@ public class Voucher {
 
     private String ticketType;
 
+    private LocalDateTime voucherStartDate;
+
     private LocalDateTime createDate;
 
     @PrePersist
