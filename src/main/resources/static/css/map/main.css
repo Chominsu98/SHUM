@@ -5,7 +5,7 @@ a {
     color:white;
 }
 
-ul {
+li {
     list-style: none;
 }
 
@@ -15,50 +15,176 @@ ul {
 }
 
 .booth_info {
-    font-size: 30px;
-    width: 200px;
-    height: 50px;
+    /*width:150px;*/
+    font-size: 11px;
+    /*width: 200px;*/
+    /*height: px;*/
     background: black;
     color: white;
     text-align: center;
     position: relative;
-    /*margin-bottom: 270px;*/
-    vertical-align: middle;
-    padding: 10px;
+    margin-left: 15px;
+    margin-bottom: -10px;
+    /*vertical-align: middle;*/
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
 }
 
 .booth_info.focus {
     border: solid 10px yellow;
+    margin-top: -10px;
+    margin-left: 5px;
+    z-index:999;
 }
-
-
 
 .getMyPos img {
     position: absolute;
-    bottom: 180px;
-    left: 40px;
-    width: 150px;
-    height: 150px;
+    bottom: 20px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
     z-index: 10;
     cursor: pointer;
 }
 
 .getMyPos img.up{
-    margin-bottom: 320px;
+    margin-bottom: 170px;
 }
 
 .reload img{
     position: absolute;
-    bottom: 180px;
-    right: 40px;
-    width: 150px;
-    height: 150px;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
     z-index: 10;
     cursor: pointer;
 }
 
 .reload img.up{
-    margin-bottom: 320px;
+    margin-bottom: 170px;
+}
+
+#search_m {
+    color: black;
+    width: 5px;
+    height: 5px;
+
+    position: absolute;
+    top : 10px;
+    left: 70%;
+    z-index: 999;
+}
+
+.search_booth {
+    position: absolute;
+    top: 200px;
+    left: 20%;
+
+    font-size: 70px;
+}
+
+#my_modal {
+    display : none;
+    z-index : 100;
+    left : 0;
+    top : 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    /*레이어 색갈은 여기서 바꾸면 됨*/
+    background-color: rgba(0,0,0,0.4);
+}
+
+#my_modal .my_modal_wbg {
+    margin: 70px auto 70px auto;
+    background-color: white;
+
+    width: 35%;
+}
+
+.modal_header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.search_booth {
+    top: 100px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    z-index : 100;
+}
+
+.modal_header img {
+    position: absolute;
+    left: 35%;
+    top: 100px;
+    width: 30px;
+    height: 30px;
+}
+
+
+.modal_close_btn {
+    font-size: 20px;
+}
+
+.modal_header input {
+    display: inline-block;
+
+    margin-top: 100px;
+    margin-left: 40px;
+
+    width: 300px;
+    height: 30px;
+    border: solid 1px gray;
+    margin-right: 10px;
+
+    font-size: 15px;
+    color: black;
+}
+
+.modal_header button {
+    display: inline-grid;
+    place-content: center;
+
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+
+    font-size: 15px;
+    text-align: center;
+}
+
+
+.search_result ul {
+    list-style: none;
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search_result li {
+    /*margin: 5px 0px 5px 0px;*/
+    height: 100px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+.search_result {
+    text-align: center;
+    font-size: 15px;
+    /*margin: auto 0;*/
+    /*top: 0; bottom:0;*/
+}
+
+.blank {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .booth.invisible {
@@ -67,10 +193,10 @@ ul {
 
 .booth {
     position: absolute;
-    width: 90%;
-    height: 300px;
+    width: 94%;
+    height: 160px;
     left: 50%;
-    bottom: 170px;
+    bottom: 20px;
     transform: translate(-50%);
     z-index: 10;
     background: white;
@@ -79,233 +205,20 @@ ul {
     border-radius: 20px;
 }
 
-.booth_info {
-    font-size: 30px;
-    width: 200px;
-    height: 50px;
-    background: black;
-    color: white;
-    text-align: center;
-    position: relative;
-    /*padding-bottom: 270px;*/
-    vertical-align: middle;
-    padding: 10px;
-}
-
-.booth_info.focus {
-    border: solid 10px yellow;
-}
-
-#my_modal {
-    display : none;
-    z-index : 100;
-    left : 0;
-    top : 0;
-    width: 130%;
-    height: 100%;
-    overflow: auto;
-
-    /*레이어 색갈은 여기서 바꾸면 됨*/
-    background-color: rgba(0,0,0,0.4);
-}
-
-
-#my_modal .my_modal_wbg {
-    margin: 150px 80px 150px 80px;
-    background-color: white;
-
-    width: 64%;
-}
-
-.search_booth {
-    position: absolute;
-    top: 200px;
-    left: 20%;
-
-    font-size: 70px;
-}
-.modal_header img {
-    position: absolute;
-    top: 225px;
-    left: 10%;
-
-    width: 50px;
-    height: 50px;
-}
-
-.modal_header input {
-    display: inline-block;
-
-    margin-top: 200px;
-    margin-left: 40px;
-
-    width: 600px;
-    height: 70px;
-    border: solid 1px gray;
-
-    font-size: 40px;
-}
-
-.modal_header button {
-    display: inline-block;
-
-    margin-left: 10px;
-
-    width: 100px;
-    height: 70px;
-
-    font-size: 40px;
-}
-
-.modal_close_btn {
-    font-size: 70px;
-}
-
-.search_result {
-    text-align: center;
-}
-
-.search_result ul {
-    list-style: none;
-    width: 92%;
-}
-
-.search_result li {
-    margin: 20px 0px 20px 0px;
-    height: 100px;
-    padding-top: 30px;
-}
-
-.search_result {
-    text-align: center;
-    font-size: 40px;
-    margin: auto 0;
-}
-
-.blank {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-#my_modal {
-    display : none;
-    z-index : 100;
-    left : 0;
-    top : 0;
-    width: 130%;
-    height: 100%;
-    overflow: auto;
-
-    /*레이어 색갈은 여기서 바꾸면 됨*/
-    background-color: rgba(0,0,0,0.4);
-}
-
-
-#my_modal .my_modal_wbg {
-    margin: 150px 80px 150px 80px;
-    background-color: white;
-
-    width: 64%;
-}
-
-.search_booth {
-    position: absolute;
-    top: 200px;
-    left: 20%;
-
-    font-size: 70px;
-}
-.modal_header img {
-    position: absolute;
-    top: 225px;
-    left: 10%;
-
-    width: 50px;
-    height: 50px;
-}
-
-.modal_header input {
-    display: inline-block;
-
-    margin-top: 200px;
-    margin-left: 40px;
-
-    width: 600px;
-    height: 70px;
-    border: solid 1px gray;
-
-    font-size: 40px;
-}
-
-.modal_header button {
-    display: inline-block;
-
-    margin-left: 10px;
-
-    width: 100px;
-    height: 70px;
-
-    font-size: 40px;
-}
-
-.modal_close_btn {
-    font-size: 70px;
-}
-
-.search_result {
-    text-align: center;
-}
-
-.search_result ul {
-    list-style: none;
-    width: 92%;
-}
-
-.search_result li {
-    margin: 20px 0px 20px 0px;
-    height: 100px;
-    padding-top: 30px;
-}
-
-.search_result {
-    text-align: center;
-    font-size: 40px;
-    margin: auto 0;
-}
-
-.blank {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.getMyPos img {
-    position: absolute;
-    bottom: 180px;
-    left: 40px;
-    width: 150px;
-    height: 150px;
-    z-index: 10;
-    cursor: pointer;
-}
-
-.getMyPos img.up{
-    margin-bottom: 320px;
-}
-
 .booth .boothDesc {
-    font-size: 30px;
+    font-size: 15px;
     font-weight: bold;
     display: flex;
     flex-direction: column;
-    margin: 35px auto 20px auto;
-    padding-bottom: 35px;
+    margin: 20px auto 10px auto;
+    padding-bottom: 5px;
     border-bottom: solid 1px gray;
-    width: 80%;
+    width: 85%;
 }
 
 #boothName {
-    font-size: 40px;
-    margin-left: -40px;
+    font-size: 30px;
+    margin-left: -20px;
     margin-bottom: 10px;
 }
 
@@ -320,27 +233,29 @@ ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 .icons img {
-    width: 90px;
-    height: 80px;
+    width: 50px;
+    height: 40px;
     margin-left: 70px;
     margin-right: 70px;
 }
 
 .footer {
+    display: none;
     text-align: center;
 }
 
 .footer button {
     width: 90%;
-    height: 100px;
-    margin-top: 20px;
-    font-size: 40px;
+    height: 40px;
+    margin-top: 10px;
+    font-size: 20px;
     border-radius: 20px;
-    background-color: black;
-    color: white;
+    padding-top: -20px;
+    /*background-color: black;*/
+    color: black;
 }

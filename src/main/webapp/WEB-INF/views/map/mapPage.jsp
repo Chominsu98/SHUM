@@ -6,19 +6,24 @@
 <head>
 	<title>지도보기</title>
 	<link rel="stylesheet" href="/css/map/main.css">
-	<link rel="stylesheet" href="/css/map/mapstyle.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-
 	<jsp:include page="../layout/same_css.jsp" flush="false"></jsp:include>
-
+	<link rel="stylesheet" href="/css/map/mapstyle.css">
+	<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+	/>
 </head>
 <body class="is-preload">
-
+<div id="mappage">
 <div id="page-wrapper">
+		<jsp:include page="../layout/same_menu.jsp" flush="false"></jsp:include>
+		<div class="search">
+			<i id="search_m" class="fas fa-search fa-4x"></i>
+		</div>
+	<article id="main">
+<%--	<div id="mappage">--%>
 
-	<jsp:include page="../layout/same_menu.jsp" flush="false"></jsp:include>
-
-<article id="main">
 	<header>
 		<h2>지도보기</h2>
 		<p>내 주위 가까운 위치의 우산부스를 찾아보세요</p>
@@ -44,17 +49,18 @@
 								<li class="nav-item">
 									<a class="nav-link" href="#">💦최근이용</a>
 								</li>
-								</li>
 
 							</ul>
-							<form class="d-flex">
+							<form class="d-flex" onsubmit="return false">
 								<input class="form-control me-2" type="search" placeholder="🔎지역검색" aria-label="Search">
-								<button class="btn btn-outline-success" type="submit">검색</button>
+								<button id="search_web" class="btn btn-outline-success" type="button">검색</button>
 							</form>
 						</div>
 					</div>
 				</nav>
-				<h4>지도</h4>
+				<div id="invisible">
+					<h4>지도</h4>
+				</div>
 
 				<div class="box alt">
 					<div class="row gtr-50 gtr-uniform">
@@ -83,10 +89,34 @@
 										</ul>
 										<div class="icons">
 											<img src="/images/map/navigator.png" alt="" id="navigatorIcon">
-											<img src="/images/map/ticket.png" alt="">
+											<img src="/images/map/ticket.png" alt="" id="ticketIcon">
 										</div>
 									</div>
 								</div>
+
+								<div class="footer">
+									<div class="nearBooth">
+										<a href="/map/nearBoothPage"><button>주변 부스</button></a>
+									</div>
+								</div>
+
+								<div id="my_modal">
+									<div class="my_modal_wbg">
+										<div class="modal_header">
+											<img src="/images/close.png" class="modal_close_btn" />
+											<div class="search_booth">우산 부스 검색</div>
+
+											<input id="modal_input" type="search" placeholder="부스명을 입력하세요." />
+											<button id="modal_button">검색</button>
+										</div>
+
+										<div class="search_result">
+											<span class="blank"></span>
+											<ul>
+												<li>검색 결과가 없습니다.</li>
+											</ul>
+										</div>
+									</div>
 							</div>
 						</div>
 					</div>
@@ -96,12 +126,13 @@
 
 	</section>
 </article>
-
-<jsp:include page="../layout/same_footer.jsp" flush="false"></jsp:include>
 </div>
-
+	<div id="invisible">
+		<jsp:include page="../layout/same_footer.jsp" flush="false"></jsp:include>
+	</div>
 <jsp:include page="../layout/same_script.jsp" flush="false"></jsp:include>
 
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b2238e5793485dc179dc4a96ebb0bf6d"></script>

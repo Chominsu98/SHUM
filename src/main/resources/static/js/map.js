@@ -105,11 +105,6 @@ function modal(id) {
 //     return this;
 // };
 
-// document.getElementById('search').addEventListener('click', function() {
-//     // 모달창 띄우기
-//     modal('my_modal');
-// });
-
 var container = document.getElementById('map');
 var options = {
     center: new kakao.maps.LatLng(33.450701, 126.570667),   //지도의 중심 좌표
@@ -161,7 +156,7 @@ if (navigator.geolocation) {
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다
 function displayMarker() {
     var imageSrc = "/images/map/ping.png";
-    var imageSize = new kakao.maps.Size(100, 110);
+    var imageSize = new kakao.maps.Size(40, 50);
     //부스 위치 마커를 생성합니다.
     for (var i = 0; i < positions.length; i++) {
 
@@ -170,7 +165,7 @@ function displayMarker() {
         var marker = new kakao.maps.Marker({
             map: map,
             position: positions[i].latlng,
-            title: positions[i].title,
+            // title: positions[i].title,
             image: markerImage
         });
 
@@ -180,26 +175,44 @@ function displayMarker() {
             `</div>`;
 
         var infowindow = new kakao.maps.InfoWindow({
-            map : map,
             position : positions[i].latlng,
             content: content
-        })
+        });
 
-        infowindow.open(map, marker);
-        map.setCenter(locPosition)
         // var customOverlay = new kakao.maps.CustomOverlay({
         //     map: map,
         //     position: positions[i].latlng,
         //     content: content
         // });
-    }
+
+        // // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+        // kakao.maps.event.addListener(marker, 'click', function() {
+        //     overlay.setMap(map);
+        // });
+
+        //customOverlay.setMap(map);
+            infowindow.open(map, marker);
+        }
+        map.setCenter(locPosition);
+        var info = document.querySelectorAll('.booth_info');
+        info.forEach(function(e) {
+            // console.log(e);
+            // var w = e.offsetWidth + 10;
+            // var ml = w / 2;
+            // e.parentElement.style.top = "82px";
+            // e.parentElement.style.left = "50%";
+            // e.parentElement.style.marginLeft = -ml + "px";
+            // e.parentElement.style.width = w + "px";
+            e.parentElement.previousSibling.style.display = "none";
+            e.parentElement.parentElement.style.border = "0px";
+            e.parentElement.parentElement.style.background = "unset";
+        });
 
     setInterval(function(){
         getUserPos();
     }, 1000);
 
     //getUserPos(myPos);
-
 }
 
 function getUserPos() {
@@ -211,7 +224,7 @@ function getUserPos() {
             locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다.(내 위치)
 
             var myPosImg = "/images/map/myPos.png";
-            var imageSize = new kakao.maps.Size(50, 50);
+            var imageSize = new kakao.maps.Size(20, 20);
             var myMarkerImage = new kakao.maps.MarkerImage(myPosImg, imageSize);
 
             myPos.setMap(null);
@@ -224,6 +237,48 @@ function getUserPos() {
         });
     } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
         alert('error');
+    }
+}
+
+function searchByWeb() {
+    var modal_input = document.getElementById("modal_input");
+    modal_input.style.display = "none";
+
+    var modal_button = document.getElementById("modal_button");
+    modal_button.style.display = "none";
+
+    var boothName = document.querySelector(".d-flex input");
+    var isNotChanged = new Boolean(true);
+
+    var list = document.querySelector('.search_result ul');
+
+    while ( list.hasChildNodes() )
+    {
+        list.removeChild (list.firstChild);
+    }
+
+    var i = 0;
+    positions.forEach(position => {
+        for ( key in position) {
+            if (key === "title" && position[key].includes(boothName.value)) {
+                isNotChanged = false;
+                var searchResultList = document.querySelector('.search_result ul');
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(`${positions[i].title} ( ${positions[i].left}개 )`));
+                li.onclick = function () {
+                    var modal = document.getElementById("my_modal");
+                    modal.style.display = "none";
+                    btnBoothDetail(position.id, position.title, position.left, position.fixed);
+                }
+                searchResultList.appendChild(li);
+            }
+        }
+        i += 1;
+    })
+    if (isNotChanged) {
+        var li = document.createElement("li")
+        li.appendChild(document.createTextNode("검색 결과가 없습니다."));
+        list.appendChild(li);
     }
 }
 
@@ -284,3 +339,21 @@ navigatorBTN.addEventListener('click', function() {
     var booth_id = target.value;
     location.href=`https://map.kakao.com/link/to/${positions[booth_id].title}, ${positions[booth_id].latlng.getLat()}, ${positions[booth_id].latlng.getLng()}`;
 });
+
+var ticketBTN = document.querySelector('#ticketIcon');
+ticketBTN.addEventListener('click', function() {
+    var target = document.querySelector('.booth input');
+    var booth_id = target.value;
+    location.href=`/rental/showUmbrella/${booth_id}`;
+});
+
+document.getElementById('search_web').addEventListener('click', function() {
+    var boothName = document.querySelector(".d-flex input");
+    if (boothName.value !== '') {
+        // 모달창 띄우기
+        modal('my_modal');
+        searchByWeb();
+    }
+});
+
+
