@@ -208,14 +208,15 @@ function displayMarker() {
             e.parentElement.parentElement.style.background = "unset";
         });
 
+    var myPosImg = "/images/map/myPos.png";
     setInterval(function(){
-        getUserPos();
-    }, 1000);
+        getUserPos(myPosImg);
+    }, 3000);
 
     //getUserPos(myPos);
 }
 
-function getUserPos() {
+function getUserPos(myImg) {
     if (navigator.geolocation) {
         // GeoLocation을 이용해서 접속 위치를 얻어옵니다
         navigator.geolocation.getCurrentPosition(function(pos) {
@@ -223,7 +224,7 @@ function getUserPos() {
                 lon = pos.coords.longitude; // 경도
             locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다.(내 위치)
 
-            var myPosImg = "/images/map/myPos.png";
+            var myPosImg = myImg;
             var imageSize = new kakao.maps.Size(20, 20);
             var myMarkerImage = new kakao.maps.MarkerImage(myPosImg, imageSize);
 
@@ -268,7 +269,8 @@ function searchByWeb() {
                 li.onclick = function () {
                     var modal = document.getElementById("my_modal");
                     modal.style.display = "none";
-                    btnBoothDetail(position.id, position.title, position.left, position.fixed);
+                    console.log(position.id, position.title, position.left, position.fixed);
+                    btnBoothDetail(position.id-1, position.title, position.left, position.fixed);
                 }
                 searchResultList.appendChild(li);
             }
@@ -343,7 +345,7 @@ navigatorBTN.addEventListener('click', function() {
 var ticketBTN = document.querySelector('#ticketIcon');
 ticketBTN.addEventListener('click', function() {
     var target = document.querySelector('.booth input');
-    var booth_id = target.value;
+    var booth_id = parseInt(target.value)+1;
     location.href=`/rental/showUmbrella/${booth_id}`;
 });
 
