@@ -1,0 +1,47 @@
+우산 40개 추가 쿼리문
+INSERT INTO umbrella VALUES (1, FALSE, FALSE, 1, '지역Edition', 1);
+INSERT INTO umbrella VALUES (2, FALSE, FALSE, 2, '지역Edition', 1);
+INSERT INTO umbrella VALUES (3, FALSE, FALSE, 3, '지역Edition', 1);
+INSERT INTO umbrella VALUES (4, FALSE, FALSE, 4, '지역Edition', 1);
+INSERT INTO umbrella VALUES (5, FALSE, FALSE, 5, '지역Edition', 1);
+INSERT INTO umbrella VALUES (6, FALSE, FALSE, 6, '프리Edition', 1);
+INSERT INTO umbrella VALUES (7, FALSE, FALSE, 7, '프리Edition', 1);
+INSERT INTO umbrella VALUES (8, FALSE, FALSE, 8, '프리Edition', 1);
+INSERT INTO umbrella VALUES (9, FALSE, FALSE, 9, '프리Edition', 1);
+INSERT INTO umbrella VALUES (10, FALSE, FALSE, 10, '프리Edition', 1);
+INSERT INTO umbrella VALUES (11, FALSE, FALSE, 11, '지역Edition', 2);
+INSERT INTO umbrella VALUES (12, FALSE, FALSE, 12, '지역Edition', 2);
+INSERT INTO umbrella VALUES (13, FALSE, FALSE, 13, '지역Edition', 2);
+INSERT INTO umbrella VALUES (14, FALSE, FALSE, 14, '지역Edition', 2);
+INSERT INTO umbrella VALUES (15, FALSE, FALSE, 15, '지역Edition', 2);
+INSERT INTO umbrella VALUES (16, FALSE, FALSE, 16, '프리Edition', 2);
+INSERT INTO umbrella VALUES (17, FALSE, FALSE, 17, '프리Edition', 2);
+INSERT INTO umbrella VALUES (18, FALSE, FALSE, 18, '프리Edition', 2);
+INSERT INTO umbrella VALUES (19, FALSE, FALSE, 19, '프리Edition', 2);
+INSERT INTO umbrella VALUES (20, FALSE, FALSE, 20, '프리Edition', 2);
+INSERT INTO umbrella VALUES (21, FALSE, FALSE, 21, '지역Edition', 3);
+INSERT INTO umbrella VALUES (22, FALSE, FALSE, 22, '지역Edition', 3);
+INSERT INTO umbrella VALUES (23, FALSE, FALSE, 23, '지역Edition', 3);
+INSERT INTO umbrella VALUES (24, FALSE, FALSE, 24, '지역Edition', 3);
+INSERT INTO umbrella VALUES (25, FALSE, FALSE, 25, '지역Edition', 3);
+INSERT INTO umbrella VALUES (26, FALSE, FALSE, 26, '프리Edition', 3);
+INSERT INTO umbrella VALUES (27, FALSE, FALSE, 27, '프리Edition', 3);
+INSERT INTO umbrella VALUES (28, FALSE, FALSE, 28, '프리Edition', 3);
+INSERT INTO umbrella VALUES (29, FALSE, FALSE, 29, '프리Edition', 3);
+INSERT INTO umbrella VALUES (30, FALSE, FALSE, 30, '프리Edition', 3);
+INSERT INTO umbrella VALUES (31, FALSE, FALSE, 31, '지역Edition', 4);
+INSERT INTO umbrella VALUES (32, FALSE, FALSE, 32, '지역Edition', 4);
+INSERT INTO umbrella VALUES (33, FALSE, FALSE, 33, '지역Edition', 4);
+INSERT INTO umbrella VALUES (34, FALSE, FALSE, 34, '지역Edition', 4);
+INSERT INTO umbrella VALUES (35, FALSE, FALSE, 35, '지역Edition', 4);
+INSERT INTO umbrella VALUES (36, FALSE, FALSE, 36, '프리Edition', 4);
+INSERT INTO umbrella VALUES (37, FALSE, FALSE, 37, '프리Edition', 4);
+INSERT INTO umbrella VALUES (38, FALSE, FALSE, 38, '프리Edition', 4);
+INSERT INTO umbrella VALUES (39, FALSE, FALSE, 39, '프리Edition', 4);
+INSERT INTO umbrella VALUES (40, FALSE, FALSE, 40, '프리Edition', 4);
+
+부스 4개 추가 쿼리문
+INSERT INTO booth VALUES (1, '광운대역', 0, 37.623944920319325, 5, 5, 127.06180626969477, 10);
+INSERT INTO booth VALUES (2, '광운대학교', 0, 37.61948716664469, 5, 5, 127.05983609178338, 10);
+INSERT INTO booth VALUES (3, '석계역', 0, 37.61516201937009, 5, 5, 127.06582989710904, 10);
+INSERT INTO booth VALUES (4, '왕건빌라', 0, 37.620811547390005, 5, 5, 127.05826418503679, 10);
