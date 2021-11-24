@@ -88,7 +88,7 @@ public class VoucherService {
         user.setLateFee(0);
     }
 
-    @Scheduled(fixedRateString = "1000")
+    @Scheduled(fixedRateString = "30000")
     @Transactional
     public void 이용권기간만료() {
         ArrayList<VoucherDto> list = new ArrayList<>();
@@ -141,7 +141,7 @@ public class VoucherService {
         }
     }
 
-    @Scheduled(fixedRateString = "5000")
+    @Scheduled(fixedRateString = "30000")
     @Transactional
     public void 연체료부과() {
         ArrayList<Integer> userIdList = new ArrayList<>();
