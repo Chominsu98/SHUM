@@ -36,9 +36,8 @@
                 <div id="menu">
                     <ul>
                         <li><a href="/map/mapPage">내 주위우산</a></li>
-                        <li><a href="/charge/payway">이용권 구매</a></li>
-                        <li><a href="elements.html">이용안내</a></li>
-                        <li><a href="#">오늘의 날씨</a></li>
+                        <li><a href="/charge/payform">이용권 구매</a></li>
+                        <li><a href="/instruction/history">이용안내</a></li>
                         <li>
                             <a onclick="myFunction()" class="dropbtn">회원정보⬇️</a>
                             <div id="myDropdown" class="dropdown-content">

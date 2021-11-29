@@ -111,10 +111,6 @@
 							</thead>
 							<tbody>
 							<tr class="rental_info">
-								<th scope="row">대여장소:</th>
-								<td>광운대역</td>
-							</tr>
-							<tr class="rental_info">
 								<th scope="row">우산모델:</th>
 								<td>${umbrella.umbrella.umbrellaType}</td>
 							</tr>
@@ -239,7 +235,7 @@
 					</c:when>
 					<c:otherwise>
 						<h2>구매한 이용권이 없습니다.</h2>
-						<a href="/charge/payway" class="button fit ">구매하러 가기</a>
+						<a href="/charge/payform" class="button fit ">구매하러 가기</a>
 					</c:otherwise>
 				</c:choose>
 			</div>

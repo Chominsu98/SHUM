@@ -8,13 +8,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <jsp:include page="../layout/same_css.jsp" flush="false"></jsp:include>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <style>
         h3{
             font-size:1.5em;
         }
 
 
+        #main > header p {
+            color: inherit;
+            letter-spacing: 0em;
+            text-transform: uppercase;
+            top: 0;
+        }
         .head-background{
             background-color: #ff0000ad !important;
             font-family: 'Do Hyeon', sans-serif !important;
@@ -70,180 +76,174 @@
         button{
             font-family: 'Do Hyeon', sans-serif !important;
         }
+
+        section{
+            margin:-0.7em;
+        }
+        table th,td{
+            font-family:"Do Hyeon";
+            font-size: 0.92em;
+        }
+        .button-series{
+            background-color: #ff5252;
+            border-color: #ff5252;
+        }
+
     </style>
 </head>
 <body class="is-preload">
 
 <!-- Page Wrapper -->
-    <div id="page-wrapper">
-        <jsp:include page="../layout/same_menu.jsp" flush="false"></jsp:include>
+<div id="page-wrapper">
+    <jsp:include page="../layout/same_menu.jsp" flush="false"></jsp:include>
 
     <!-- Main -->
-        <article id="main">
-            <header>
-                <h2>사용가능우산</h2>
-                <p>광운대의 우산정보들을 한 눈에 봐보세요</p>
-            </header>
+    <article id="main">
+        <header>
+            <h2>사용가능우산</h2>
+            <p>광운대의 우산정보들을 한 눈에 봐보세요</p>
+        </header>
         <section class="wrapper style5">
             <div class="inner">
 
 
-        <section>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position:inherit;background-color: white!important;">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#"><h5 style="font-family:'Nanum Gothic',sans-serif !important;"><i class="far fa-compass"></i>현위치:</h5></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="/map/mapPage">📄지도보기</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">⭐즐겨찾기</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">💦최근이용</a>
-                        </li>
-                        </li>
-
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="🔎지역검색" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">검색</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-        <h4>부스넘버${booth.id}</h4>
-
-        <%--팝업모달창--%>
-        <div id="popup" class="hide">
-            <div class="content">
-                <c:choose>
-                    <c:when test="${user.haveTicket==true}">
-                        <p>이용권을 사용하시겠습니까?</p>
-                        <button  class="button primary icon far fa-check-square" onclick="closePopup(this.id)" id="useticket">이용권사용</button>
-                        <button class="button primary icon far fa-check-square" onclick="closePopup(this.id)" style="margin-left: 37px;" id="close" >닫기</button>
-                    </c:when>
-                    <c:otherwise>
-                        <p>
-                            회원님께서는 보유하고 있는 이용권이 없습니다.
-                        </p>
-                        <button  class="button primary icon far fa-check-square" onclick="closePopup()" id="buyticket">이용권사러가기</button>
-                    </c:otherwise>
-                </c:choose>
-            </div>
-        </div>
-
-        <table class="table table-hover">
-            <thead class="head-background">
-
-            <tr >
-                <th scope="col">가능</th>
-                <th scope="col">거치대</th>
-                <th scope="col">타입</th>
-                <th scope="col">상태</th>
-            </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="umbrella" items="${booth.umbrellas}">
-                    <c:choose>
-                        <c:when test="${umbrella.brokenState == false}">
-                            <tr class="moveto_ticket">
-                                <th scope="row">
-                                    <c:choose>
-                                        <c:when test="${umbrella.rentalState==true}">
-                                            ❌
-                                        </c:when>
-                                        <c:otherwise>
-                                            ✔
-                                        </c:otherwise>
-                                    </c:choose>
-                                </th>
-                                <td>${umbrella.umbrellaNumber}</td>
-                                <td>${umbrella.umbrellaType}</td>
-                                <td>
-                                    <c:choose>
-                                        <c:when test="${umbrella.rentalState==true}">
-                                            대여중
-                                        </c:when>
-                                        <c:otherwise>
-                                            대여가능
-                                        </c:otherwise>
-                                    </c:choose>
-                                </td>
-                            </tr>
-                        </c:when>
-                    </c:choose>
-                </c:forEach>
-            </tbody>
-            <tfoot class="total-count">
-                <tr>
-                <th scope="">대여가능개수</th>
-                <td colspan="3" style="font-size:30px">${booth.leftFreeUmbrella + booth.leftLocationUmbrella}</td>
-                </tr>
-            </tfoot>
-            </table>
+                <section>
+                    <div style="margin-bottom: 2em">
+                        <a class="btn btn-primary button-series" onclick="history.back()"> <i class="zmdi zmdi-arrow-left"></i>뒤로가기</a>
+                        <a class="btn btn-primary button-series" style="float:right" href="/charge/payform"><i class="zmdi zmdi-shopping-cart"></i>이용권사기</a>
+                    </div>
 
 
 
-            </section>
+                    <h4>부스넘버${booth.id}</h4>
+
+                    <%--팝업모달창--%>
+                    <div id="popup" class="hide">
+                        <div class="content">
+                            <c:choose>
+                                <c:when test="${user.haveTicket==true}">
+                                    <p>이용권을 사용하시겠습니까?</p>
+                                    <button  class="button primary icon far fa-check-square" onclick="closePopup(this.id)" id="useticket">이용권사용</button>
+                                    <button class="button primary icon far fa-check-square" onclick="closePopup(this.id)" style="margin-left: 37px;" id="close" >닫기</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <p>
+                                        ❌회원님께서는 보유하고 있는 이용권이 없습니다.
+                                    </p>
+                                    <div class="d-grid gap-2 mx-auto">
+                                        <a class="btn btn-primary button-color" onclick="closePopup()" ><i class="zmdi zmdi-check-circle"></i>확인</a>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+
+                    <table class="table table-hover">
+                        <thead class="head-background">
+
+                        <tr >
+                            <th scope="col">가능</th>
+                            <th scope="col">거치대</th>
+                            <th scope="col">타입</th>
+                            <th scope="col">상태</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="umbrella" items="${booth.umbrellas}">
+                            <c:choose>
+                                <c:when test="${umbrella.brokenState == false}">
+                                    <tr class="moveto_ticket">
+                                        <th scope="row">
+                                            <c:choose>
+                                                <c:when test="${umbrella.rentalState==true}">
+                                                    ❌
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ✔
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </th>
+                                        <td>${umbrella.umbrellaNumber}</td>
+                                        <td>${umbrella.umbrellaType}</td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${umbrella.rentalState==true}">
+                                                    대여중
+                                                </c:when>
+                                                <c:otherwise>
+                                                    대여가능
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                    </tr>
+                                </c:when>
+                            </c:choose>
+                        </c:forEach>
+                        </tbody>
+                        <tfoot class="total-count">
+                        <tr>
+                            <th scope="">대여가능개수</th>
+                            <td colspan="3" style="font-size:30px">${booth.leftFreeUmbrella + booth.leftLocationUmbrella}</td>
+                        </tr>
+                        </tfoot>
+                    </table>
+
+
+
+                </section>
 
             </div>
-            </section>
-            </article>
+        </section>
+    </article>
 
-            <jsp:include page="../layout/same_footer.jsp" flush="false"></jsp:include>
-            </div>
+    <jsp:include page="../layout/same_footer.jsp" flush="false"></jsp:include>
+</div>
 
-    <!-- Scripts -->
-    <script>
+<!-- Scripts -->
+<script>
 
 
 
     $(".moveto_ticket").click(function(){
         showPopup(true);
-    // window.location="#";
+        // window.location="#";
     });
 
     function showPopup(hasFilter) {
-    const popup = document.querySelector('#popup');
+        const popup = document.querySelector('#popup');
 
-    if (hasFilter) {
-        popup.classList.add('has-filter');
-    } else {
-        popup.classList.remove('has-filter');
-    }
+        if (hasFilter) {
+            popup.classList.add('has-filter');
+        } else {
+            popup.classList.remove('has-filter');
+        }
 
-    popup.classList.remove('hide');
+        popup.classList.remove('hide');
     }
 
     function closePopup(id) {
-    const popup = document.querySelector('#popup');
-    var way;
-    if(id=="useticket"){
-        way="/charge/QRcodePage"//이용권큐알페이지로 바로 이동
-    }
-    else if(id=="close"){
+        const popup = document.querySelector('#popup');
+        var way;
+        if(id=="useticket"){
+            way="/charge/QRcodePage"//이용권큐알페이지로 바로 이동
+        }
+        else if(id=="close"){
+            popup.classList.add('hide');
+            return;
+        }
+        else{
+            way="/charge/payform";//이용권사러가기페이지 이동
+        }
         popup.classList.add('hide');
-        return;
+        window.location=way;
     }
-    else{
-        way="/charge/payway";//이용권사러가기페이지 이동
-    }
-    popup.classList.add('hide');
-    window.location=way;
-    }
-    </script>
+</script>
 
 
-    <jsp:include page="../layout/same_script.jsp" flush="false"></jsp:include>
+<jsp:include page="../layout/same_script.jsp" flush="false"></jsp:include>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
-    </body>
+</body>
 </html>

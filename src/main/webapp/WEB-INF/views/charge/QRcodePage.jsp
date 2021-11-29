@@ -251,7 +251,7 @@
                     </c:when>
                     <c:otherwise>
                         <h2>구매한 이용권이 없습니다.</h2>
-                        <a href="/charge/payway" class="button fit ">구매하러 가기</a>
+                        <a href="/charge/payform" class="button fit ">구매하러 가기</a>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -265,7 +265,7 @@
 <div id="popup" class="hide">
     <div class="content">
         <p class="notification" id="notification">
-            ❗❗회원님의 대여기간이 24시간보다<br>초과되어 연체료가 부과되었으니 연체료를 결제하시기바랍니다.
+            ❗❗회원님의 대여기간이 24시간보다 초과되어 연체료가 부과되었으니 연체료를 결제하시기바랍니다.
         </p>
         <div class="d-grid gap-2 mx-auto">
             <button class="btn btn-primary button-color" onclick="closePopup(this.value)" id="close" value="close"><i class="zmdi zmdi-check-circle"></i>확인</button>

@@ -10,6 +10,10 @@
 
 <style>
 
+    button, html [type="button"] {
+        -webkit-appearance: none;
+    }
+
     h1, h2, h3, h4, h5, h6,a{
         font-family: 'Do Hyeon', sans-serif !important;
     }
