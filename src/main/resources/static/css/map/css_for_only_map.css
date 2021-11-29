@@ -185,19 +185,20 @@
     }
 
     .booth_info {
+        border-radius: 12px;
         font-size: 10px;
         background: black;
         color: white;
         text-align: center;
         position: relative;
         margin-left: 23px;
-        margin-bottom: -10px;
+        margin-bottom: -2px;
         /*vertical-align: middle;*/
         padding: 6px 13px 6px 13px;
     }
 
     .booth_info.focus {
-        border: solid 8px yellow;
+        border: solid 6px yellow;
         margin-top: -8px;
         margin-left: 15px;
         z-index:999;
