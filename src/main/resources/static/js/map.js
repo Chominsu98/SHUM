@@ -154,6 +154,7 @@ if (navigator.geolocation) {
         map.setCenter(locPosition)
 
         displayMarker();
+        getUserPos();
     });
 } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
     alert('error');
@@ -161,7 +162,7 @@ if (navigator.geolocation) {
 
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다
 function displayMarker() {
-    var imageSrc = "/images/map/ping.png";
+    var imageSrc = "/images/map/umbrella.png";
     var imageSize = new kakao.maps.Size(40, 50);
     //부스 위치 마커를 생성합니다.
     for (var i = 0; i < positions.length; i++) {
@@ -197,34 +198,28 @@ function displayMarker() {
         // });
 
         //customOverlay.setMap(map);
-            infowindow.open(map, marker);
-        }
-        map.setCenter(locPosition);
-        var info = document.querySelectorAll('.booth_info');
-        info.forEach(function(e) {
-            // console.log(e);
-            // var w = e.offsetWidth + 10;
-            // var ml = w / 2;
-            // e.parentElement.style.top = "82px";
-            // e.parentElement.style.left = "50%";
-            // e.parentElement.style.marginLeft = -ml + "px";
-            // e.parentElement.style.width = w + "px";
-            e.parentElement.previousSibling.style.display = "none";
-            e.parentElement.parentElement.style.border = "0px";
-            e.parentElement.parentElement.style.background = "unset";
-        });
-
-    setInterval(function(){
-        getUserPos();
-    }, 1000);
-
-    //getUserPos(myPos);
+        infowindow.open(map, marker);
+    }
+    map.setCenter(locPosition);
+    var info = document.querySelectorAll('.booth_info');
+    info.forEach(function(e) {
+        // console.log(e);
+        // var w = e.offsetWidth + 10;
+        // var ml = w / 2;
+        // e.parentElement.style.top = "82px";
+        // e.parentElement.style.left = "50%";
+        // e.parentElement.style.marginLeft = -ml + "px";
+        // e.parentElement.style.width = w + "px";
+        e.parentElement.previousSibling.style.display = "none";
+        e.parentElement.parentElement.style.border = "0px";
+        e.parentElement.parentElement.style.background = "unset";
+    });
 }
 
 function getUserPos() {
     if (navigator.geolocation) {
-        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-        navigator.geolocation.getCurrentPosition(function(pos) {
+        function success(pos) {
+            // GeoLocation을 이용해서 접속 위치를 얻어옵니다
             var lat = pos.coords.latitude, // 위도
                 lon = pos.coords.longitude; // 경도
             locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다.(내 위치)
@@ -240,9 +235,19 @@ function getUserPos() {
                 position: locPosition,
                 image: myMarkerImage
             });
-        });
-    } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-        alert('error');
+        }
+
+        function error(err) {
+            console.log("에러");
+        }
+
+        options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        }
+
+        var id = navigator.geolocation.watchPosition(success, error, options);
     }
 }
 
@@ -313,7 +318,7 @@ function search(state) {
                 isNotChanged = false;
                 var searchResultList = document.querySelector('.search_result_1 ul');
                 var li = document.createElement("li");
-                li.appendChild(document.createTextNode(`✔${positions[i].title} ( ${positions[i].left}개 )`));
+                li.appendChild(document.createTextNode(`✔${positions[i].title}(${positions[i].left}개)`));
                 li.onclick = function () {
                     closePopup('#popup_check_verifynum');
                     btnBoothDetail(position.id-1, position.title, position.left, position.fixed);
