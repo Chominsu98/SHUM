@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 public interface BoothRepository extends JpaRepository<Booth, Integer> {
-    Booth findByBoothName(String name);
     Booth findById(int id);
 
     @Modifying

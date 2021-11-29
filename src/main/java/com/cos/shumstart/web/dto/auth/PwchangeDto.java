@@ -1,5 +1,6 @@
 package com.cos.shumstart.web.dto.auth;
 
+import com.cos.shumstart.domain.user.User;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;

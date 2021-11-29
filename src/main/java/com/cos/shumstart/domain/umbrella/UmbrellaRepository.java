@@ -22,12 +22,4 @@ public interface UmbrellaRepository extends JpaRepository<Umbrella, Integer> {
     @Modifying
     @Query("UPDATE Umbrella u SET u.brokenState = :brokenState WHERE u.id = :id")
     int updateBrokenState(boolean brokenState, int id);
-
-    @Modifying
-    @Query("UPDATE Umbrella u SET u.holderNumber = null WHERE u.id = :id")
-    int updateHolderNumberRental(int id);
-
-    @Modifying
-    @Query("UPDATE Umbrella u SET u.holderNumber = :holderNumber WHERE u.id = :id")
-    int updateHolderNumberReturn(int holderNumber, int id);
 }

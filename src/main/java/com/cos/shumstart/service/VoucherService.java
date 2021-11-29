@@ -1,9 +1,9 @@
 package com.cos.shumstart.service;
 
-import com.cos.shumstart.domain.user.User;
-import com.cos.shumstart.domain.user.UserRepository;
 import com.cos.shumstart.domain.voucher.Voucher;
 import com.cos.shumstart.domain.voucher.VoucherRepository;
+import com.cos.shumstart.domain.user.User;
+import com.cos.shumstart.domain.user.UserRepository;
 import com.cos.shumstart.web.dto.VoucherDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,7 +100,7 @@ public class VoucherService {
         user.setLateFee(0);
     }
 
-    @Scheduled(fixedRateString = "30000")
+    @Scheduled(fixedRateString = "1000")
     @Transactional
     public void 이용권기간만료() {
         ArrayList<VoucherDto> list = new ArrayList<>();
@@ -153,7 +153,7 @@ public class VoucherService {
         }
     }
 
-    @Scheduled(fixedRateString = "30000")
+    @Scheduled(fixedRateString = "5000")
     @Transactional
     public void 연체료부과() {
         ArrayList<Integer> userIdList = new ArrayList<>();

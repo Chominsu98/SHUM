@@ -1,5 +1,6 @@
 package com.cos.shumstart.web;
 
+import com.cos.shumstart.config.auth.PrincipalDetails;
 import com.cos.shumstart.domain.user.User;
 import com.cos.shumstart.handler.ex.CustomValidationException;
 import com.cos.shumstart.service.AuthService;
@@ -9,6 +10,8 @@ import com.cos.shumstart.web.dto.MailDto;
 import com.cos.shumstart.web.dto.auth.FindPasswordDto;
 import com.cos.shumstart.web.dto.auth.SignupDto;
 import lombok.RequiredArgsConstructor;
+import net.bytebuddy.implementation.bind.annotation.BindingPriority;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.swing.text.StyledEditorKit;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -114,5 +118,15 @@ public class AuthController {
 
         return json;
 
+    }
+
+    @GetMapping("/instruction/history")//회사취지 설명 페이지보여줌
+    public String show_instruction(){
+        return "auth/instructionPage";
+    }
+
+    @GetMapping("/instruction/service")//회사취지 설명 페이지보여줌
+    public String show_instruction_service(){
+        return "auth/instructionPage_todolist";
     }
 }

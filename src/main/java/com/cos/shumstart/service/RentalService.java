@@ -1,13 +1,13 @@
 package com.cos.shumstart.service;
 
 import com.cos.shumstart.domain.booth.Booth;
-import com.cos.shumstart.domain.booth.BoothRepository;
 import com.cos.shumstart.domain.rental.Rental;
 import com.cos.shumstart.domain.rental.RentalRepository;
 import com.cos.shumstart.domain.umbrella.Umbrella;
-import com.cos.shumstart.domain.umbrella.UmbrellaRepository;
 import com.cos.shumstart.domain.user.User;
 import com.cos.shumstart.domain.user.UserRepository;
+import com.cos.shumstart.domain.booth.BoothRepository;
+import com.cos.shumstart.domain.umbrella.UmbrellaRepository;
 import com.cos.shumstart.domain.voucher.Voucher;
 import com.cos.shumstart.domain.voucher.VoucherRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class RentalService {
         for (int i = 0; i < rentalEntityList.size(); i++) {
             Rental rental = rentalEntityList.get(i);
 
-            if(rental.isActivation() == true) {
+            if(rental.getActivation() == true) {
                 rentalEntity = rental;
             }
         }
@@ -133,7 +133,7 @@ public class RentalService {
             Rental rental = rentalEntityList.get(i);
             System.out.println(rental.getId());
 
-            if(rental.isActivation() == true) {
+            if(rental.getActivation() == true) {
                 rentalEntity = rental;
             }
         }

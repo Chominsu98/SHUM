@@ -1,6 +1,7 @@
 package com.cos.shumstart.domain.Report;
 
 import com.cos.shumstart.domain.umbrella.Umbrella;
+import com.cos.shumstart.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,9 +20,9 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-//    @OneToOne
-//    @JoinColumn(name="userId", referencedColumnName = "id")
-//    private User user;
+    @OneToOne
+    @JoinColumn(name="userId", referencedColumnName = "id")
+    private User user;
 
     @OneToOne
     @JoinColumn(name="umbrellaId", referencedColumnName = "id")

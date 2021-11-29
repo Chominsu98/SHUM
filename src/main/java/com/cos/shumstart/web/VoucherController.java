@@ -1,6 +1,7 @@
 package com.cos.shumstart.web;
 
 import com.cos.shumstart.config.auth.PrincipalDetails;
+import com.cos.shumstart.domain.rental.Rental;
 import com.cos.shumstart.domain.user.User;
 import com.cos.shumstart.domain.voucher.Voucher;
 import com.cos.shumstart.service.AuthService;

@@ -1,5 +1,6 @@
 package com.cos.shumstart.service;
 
+import com.cos.shumstart.domain.user.UserRepository;
 import com.cos.shumstart.web.dto.MailDto;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;

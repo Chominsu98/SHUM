@@ -1,5 +1,6 @@
 package com.cos.shumstart.web.dto;
 
+import com.cos.shumstart.domain.booth.Booth;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

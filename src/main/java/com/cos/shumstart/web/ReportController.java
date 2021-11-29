@@ -42,7 +42,7 @@ public class ReportController {
 
         System.out.println(userEntity.getId() + ", " + rentalEntity.getUmbrella().getId());
 
-        reportService.우산고장신고(rentalEntity.getUmbrella().getId(), message);
+        reportService.우산고장신고(userEntity.getId(), rentalEntity.getUmbrella().getId(), message);
         return "/main/mainPage";
     }
 

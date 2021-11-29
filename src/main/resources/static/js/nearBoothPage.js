@@ -30,7 +30,7 @@ if (navigator.geolocation) {
             positions[i].distance = distance;
         }
 
-        positions.sort(function (a, b) {
+         positions.sort(function (a, b) {
             if (a.distance > b.distance) {
                 return 1;
             }

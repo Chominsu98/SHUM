@@ -38,4 +38,8 @@ public class Rental {
     public void createDate() {
         this.createDate = LocalDateTime.now();
     }
+
+    public boolean getActivation() {
+        return this.activation;
+    }
 }

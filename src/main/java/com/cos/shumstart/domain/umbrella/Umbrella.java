@@ -26,8 +26,6 @@ public class Umbrella {
 
     private String umbrellaType;
 
-    private int holderNumber;
-
     @ManyToOne
     @JoinColumn(name="boothId", referencedColumnName = "id")
     private Booth booth;

@@ -198,28 +198,28 @@ function displayMarker() {
         // });
 
         //customOverlay.setMap(map);
-        infowindow.open(map, marker);
-    }
-    map.setCenter(locPosition);
-    var info = document.querySelectorAll('.booth_info');
-    info.forEach(function(e) {
-        // console.log(e);
-        // var w = e.offsetWidth + 10;
-        // var ml = w / 2;
-        // e.parentElement.style.top = "82px";
-        // e.parentElement.style.left = "50%";
-        // e.parentElement.style.marginLeft = -ml + "px";
-        // e.parentElement.style.width = w + "px";
-        e.parentElement.previousSibling.style.display = "none";
-        e.parentElement.parentElement.style.border = "0px";
-        e.parentElement.parentElement.style.background = "unset";
-    });
+            infowindow.open(map, marker);
+        }
+        map.setCenter(locPosition);
+        var info = document.querySelectorAll('.booth_info');
+        info.forEach(function(e) {
+            // console.log(e);
+            // var w = e.offsetWidth + 10;
+            // var ml = w / 2;
+            // e.parentElement.style.top = "82px";
+            // e.parentElement.style.left = "50%";
+            // e.parentElement.style.marginLeft = -ml + "px";
+            // e.parentElement.style.width = w + "px";
+            e.parentElement.previousSibling.style.display = "none";
+            e.parentElement.parentElement.style.border = "0px";
+            e.parentElement.parentElement.style.background = "unset";
+        });
 }
 
 function getUserPos() {
     if (navigator.geolocation) {
         function success(pos) {
-            // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
             var lat = pos.coords.latitude, // 위도
                 lon = pos.coords.longitude; // 경도
             locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다.(내 위치)
@@ -238,7 +238,7 @@ function getUserPos() {
         }
 
         function error(err) {
-            console.log("에러");
+         console.log("에러");
         }
 
         options = {
