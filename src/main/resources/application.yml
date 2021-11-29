@@ -1,0 +1,55 @@
+server:
+  port: 9090
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-type: PKCS12
+    key-store-password: 1234
+  http2:
+    enabled: true
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+    
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://211.109.120.65:80/shum?serverTimezone=Asia/Seoul
+    username: root
+    password: root1234
+    
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+      
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2MB
+
+  security:
+    user:
+      name: test
+      password: 1234
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: shumservice123@gmail.com
+    password: shum1234
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
+file:
+  path: C:/workspace/springbootwork/upload/
