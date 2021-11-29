@@ -1,6 +1,5 @@
 package com.cos.shumstart.domain.user;
 
-import com.cos.shumstart.domain.umbrella.Umbrella;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,6 +29,7 @@ public class User {
     private String phone;
 
     private int lateFee;
+    private double lateFeeStack;
     private boolean state;
     private int times;
     private String role;

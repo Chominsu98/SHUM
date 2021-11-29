@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -27,8 +28,18 @@ public class RentalService {
     private final VoucherRepository voucherRepository;
 
     public Rental 대여정보(int userId) {
-        Rental rentalEntity = rentalRepository.findByUserId(userId);
 
+        List<Rental> rentalEntityList = rentalRepository.findByUserId(userId);
+
+        Rental rentalEntity = new Rental();
+
+        for (int i = 0; i < rentalEntityList.size(); i++) {
+            Rental rental = rentalEntityList.get(i);
+
+            if(rental.getActivation() == true) {
+                rentalEntity = rental;
+            }
+        }
         return rentalEntity;
     }
 
@@ -43,6 +54,7 @@ public class RentalService {
         Rental rental = new Rental();
         rental.setUser(userEntity);
         rental.setUmbrella(umbrella);
+        rental.setActivation(true);
 
         Booth boothEntity = boothRepository.findById(boothId);
         Umbrella umbrellaEntity = umbrellaRepository.findById(umbrellaId);
@@ -61,7 +73,17 @@ public class RentalService {
 
         userRepository.updateState(true, userId);
 
-        Voucher voucherEntity =  voucherRepository.findByUserId(userId);
+        List<Voucher> voucherEntityList =  voucherRepository.findByUserId(userId);
+
+        Voucher voucherEntity = new Voucher();
+
+        for (int i = 0; i < voucherEntityList.size(); i++) {
+            Voucher voucher = voucherEntityList.get(i);
+
+            if(voucher.getActivation() == true) {
+                voucherEntity = voucher;
+            }
+        }
         voucherRepository.updateVoucherStartDate(LocalDateTime.now(), voucherEntity.getId());
 
         return rentalRepository.save(rental);
@@ -78,6 +100,7 @@ public class RentalService {
         Rental rental = new Rental();
         rental.setUser(userEntity);
         rental.setUmbrella(umbrella);
+        rental.setActivation(true);
 
         Booth boothEntity = boothRepository.findById(boothId);
         Umbrella umbrellaEntity = umbrellaRepository.findById(umbrellaId);
@@ -102,8 +125,20 @@ public class RentalService {
     @Transactional
     public void 반납하기(int userId, int boothId) {
 
-        User userEntity = userRepository.findById(userId);
-        Rental rentalEntity = rentalRepository.findByUserId(userId);
+        List<Rental> rentalEntityList = rentalRepository.findByUserId(userId);
+
+        Rental rentalEntity = new Rental();
+
+        for (int i = 0; i < rentalEntityList.size(); i++) {
+            Rental rental = rentalEntityList.get(i);
+            System.out.println(rental.getId());
+
+            if(rental.getActivation() == true) {
+                rentalEntity = rental;
+            }
+        }
+        System.out.println(rentalEntity.getId());
+
         Booth boothEntity = boothRepository.findById(boothId);
         Umbrella umbrellaEntity = umbrellaRepository.findById(rentalEntity.getUmbrella().getId());
 
@@ -121,6 +156,9 @@ public class RentalService {
 
         userRepository.updateState(false, userId);
 
-        rentalRepository.rentalDelete(userId, umbrellaEntity.getId());
+        rentalRepository.updateActivation(false, rentalEntity.getId());
+        rentalRepository.updateReturnDate(LocalDateTime.now(), rentalEntity.getId());
+
+        userRepository.updateLateFeeStack(0, userId);
     }
 }

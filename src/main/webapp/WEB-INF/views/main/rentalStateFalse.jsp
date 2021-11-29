@@ -58,6 +58,7 @@
 
 <jsp:include page="../layout/same_script.jsp" flush="false"></jsp:include>
 
+<%--상단바를 투명도 주다가 내리면 생기게 하기 위해서 대여,반납 페이지에서만 적용--%>
 <script>
 	var tmp=document.getElementById("header");
 	tmp.classList.add("alt")

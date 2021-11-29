@@ -13,6 +13,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <jsp:include page="../popup_layout/same_css.jsp" flush="false"></jsp:include>
+
+
     <style>
 
         #main > header p {
@@ -27,8 +31,9 @@
             line-height: 0.5em;
         }
 
-        .time-button{
-            margin-top: 17px;
+        .button{
+            font-family: "Do Hyeon", sans-serif;
+            font-size: 0.9em;
         }
 
 
@@ -60,15 +65,27 @@
             background-color: rgb(0 0 0 / 0%);
         }
 
-        .modal {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: none;
-            background-color: rgba(0, 0, 0, 0.4);
+        .notification{
+            font-family: 'Nanum Gothic',sans-serif !important;
+            font-size: 22px;
+            line-height: 1.7;
+            color: #ffffff;
+            margin: 13px;
         }
+        .button-color{
+            background-color: #0d6efd;
+            border-color: transparent;
+            font-family: 'Do Hyeon';
+            box-shadow: inset 0 0 0 0px #fff;
+
+        }
+        button{
+            font-family: "Nanum Gothic", sans-serif;
+            outline: none !important;
+            border: none;
+            background: transparent;
+        }
+
     </style>
 </head>
 <body class="is-preload">
@@ -80,22 +97,9 @@
     <!-- Main -->
     <article id="main">
         <header>
-            <c:set var="URL" value="${requestScope['javax.servlet.forward.servlet_path']}" />
-            <c:set var="URL" value="${fn:split(URL, '/')[2]}" />
-            <c:choose >
-                <c:when test="${URL=='day'}">
-                    <h2>일일권 결제</h2>
-                    <p>24시간동안 대여횟수 제한없이 대여할 수 있습니다.</p>
-                </c:when>
-                <c:when test="${URL=='subscribe'}">
-                    <h2>정기권 결제</h2>
-                    <p>구독한 기간동안에는 대여횟수 제한없이 대여가능</p>
-                </c:when>
-                <c:otherwise>
-                    <h2>지역에디션 결제</h2>
-                    <p>지역에디션으로 더욱 할인된 가격으로 사용가능</p>
-                </c:otherwise>
-            </c:choose>
+
+            <h2>일일권 결제</h2>
+            <p>24시간동안 대여횟수 제한없이 대여할 수 있습니다.</p>
 
             <!-- <p>첫 대여 후 이용기간 동안 무제한 반복 대여 가능</p>정기권 설명서 -->
 
@@ -109,36 +113,11 @@
                         <h5>기본대여시간</h5>
                         <div class="col-12">
                             <select name="demo-category" id="tickets" onchange="change_select()">
-
-                                <c:choose>
-                                    <c:when test="${URL=='areaEdition'}">
-
-                                    </c:when>
-                                    <c:otherwise>
-                                        <option value="free">프리Edition일일권</option>
-                                    </c:otherwise>
-                                </c:choose>
-
                                 <option value="ad">지역Edition일일권</option>
-
-
-
+                                <option value="free">프리Edition일일권</option>
                             </select>
                         </div>
-<%--                        <ul class="actions day-ticket-time">--%>
-<%--                            <li value="1" class="time-button button primary fit">12시간</li>--%>
-<%--                            <li value="2" class="time-button button fit">24시간</li>--%>
-<%--                        </ul>--%>
-<%--                        <c:choose>--%>
-<%--                            <c:when test="${URL=='subscribe'}">--%>
-<%--                                <ul class="actions subscribe-ticket-days">--%>
-<%--                                    <li value="6" class="time-button button primary fit">7일</li>--%>
-<%--                                    <li value="28" class="time-button button fit">30일</li>--%>
-<%--                                    <li value="170" class="time-button button fit">180일</li>--%>
-<%--                                    <li value="350" class="time-button button fit">365일</li>--%>
-<%--                                </ul>--%>
-<%--                            </c:when>--%>
-<%--                        </c:choose>--%>
+
                     </div>
                 </section>
 
@@ -149,31 +128,28 @@
             <div class="inner">
                 <header class="major">
                     <h2>결제금액</h2>
-                    <c:choose>
-                        <c:when test="${URL=='areaEdition'}">
-                            <p id="total-selected-ticket">지역Edition일일권(24시간)</p>
-                            <h4 id="total-price">700원</h4>
-                        </c:when>
-                        <c:otherwise>
-                            <p id="total-selected-ticket">프리Edition일일권(24시간)</p>
-                            <h4 id="total-price">1000원</h4>
-                        </c:otherwise>
-                    </c:choose>
+                        <p id="total-selected-ticket">지역Edition일일권(24시간)</p>
+                        <h4 id="total-price">1500원</h4>
                 </header>
-                <form action="/charge/payform" method="post">
-                    <c:choose>
-                        <c:when test="${URL=='areaEdition'}">
-                            <input type="hidden" name="ticketType" value="지역Edition일일권">
-                        </c:when>
-                        <c:otherwise>
-                            <input type="hidden" name="ticketType" value="프리Edition일일권">
-                        </c:otherwise>
-                    </c:choose>
-                    <button class="button fit ">구매</button>
+                <form onsubmit="return false;">
+                    <input type="hidden" name="ticketType" value="지역Edition일일권" id="ticketType">
+                    <button class="button fit " id="purchase_button">구매</button>
                 </form>
             </div>
         </section>
     </article>
+
+    <%--팝업모달창--%>
+    <div id="popup" class="hide">
+        <div class="content">
+            <p class="notification" id="notification">
+                ❌회원님께서는 이미 이용권을 보유하고 있어 구매가 불가능합니다.
+            </p>
+            <div class="d-grid gap-2 mx-auto">
+                <button class="btn btn-primary button-color" onclick="closePopup(this.value)" id="close" value="get_back_to_home"><i class="zmdi zmdi-check-circle"></i>확인</button>
+            </div>
+        </div>
+    </div>
 
     <jsp:include page="../layout/same_footer.jsp" flush="false"></jsp:include>
 </div>
@@ -181,118 +157,105 @@
 <!-- Scripts -->
 <jsp:include page="../layout/same_script.jsp" flush="false"></jsp:include>
 
-
 <script>
-    const menuWrap = document.querySelector('.day-ticket-time');
-    var ticket_hour=1;
-    var ticket_day=1;
+    function showPopup(hasFilter) {
+        const popup = document.querySelector('#popup');
 
-    function select(ulEl, liEl){
-        Array.from(ulEl.children).forEach(
-            v => v.classList.remove('primary')
-        )
-        if(liEl) liEl.classList.add('primary');
-    }
-    try{
-        selectWrap=document.querySelector('.subscribe-ticket-days')
+        if (hasFilter) {
+            popup.classList.add('has-filter');
+        } else {
+            popup.classList.remove('has-filter');
+        }
 
-        selectWrap.addEventListener('click', e => {
-            const selected = e.target;
-            select(selectWrap, selected);
-            ticket_day=selected.value;
-            change_select();
-
-
-        })
-    }catch(error){
-        console.log("여긴 정기권");
-    }
-    finally {
-
-
-        menuWrap.addEventListener('click', e => {
-            const selected = e.target;
-            select(menuWrap, selected);
-            ticket_hour=selected.value;
-            change_select();
-
-
-        })
-
-
+        popup.classList.remove('hide');
     }
 
+    function closePopup(state) {
+        const popup = document.querySelector('#popup');
+        popup.classList.add('hide');
+
+        if(state=="get_back_to_home"){
+            window.location="/";
+            //이미 이용권 보유하고 있으니 홈화면으로 돌아간다.
+        }
+        else if(state=="send_paying_info"){
+            send_paying_info();//티켓타입과 결제정보를 보내줌
+        }
+        //state가 close이면 그냥 아무조건도 아니라 닫는걸로 설정..
+
+    }
+</script>
+<script>
+
+    class User{
+        constructor(name,email,phone,lateFee) {
+            this.name=name;
+            this.email=email;
+            this.phone=phone;
+            this.lateFee=lateFee;
+        }
+    }
+
+    var name='<c:out value="${user.name}"/> ';
+    var email='<c:out value="${user.email}"/>';
+    var phone='<c:out value="${user.phone}"/>';
+    var lateFee='<c:out value="${user.lateFee}"/> ';
+
+    let button=document.getElementById("purchase_button");
+    var user=new User(name,email,phone,lateFee);
+
+    button.onclick=function (){
+        paying_system("ticket_payform",user);
+    }
+
+    let state='<c:out value="${user.haveTicket}"></c:out> ';
+
+    if(JSON.parse(state)==true){
+        button.setAttribute("type","button");
+        showPopup(true);
+    }
 
     function change_select(){
-        var URL='<c:out value="${URL}"/>'
         var selectOption=document.getElementById("tickets");
         var price=0;
         var message;
         var type;
-        var time;
-        var days;
+        var ticket_type=document.getElementById("ticketType");
         var total_tag=document.getElementById("total-price");
         var ticket_tag=document.getElementById("total-selected-ticket");
         selectOption=selectOption.options[selectOption.selectedIndex].value;
 
 
 
-        ticket_hour=parseInt(ticket_hour)
-        switch (ticket_hour){
-            case 1:
-                time="24";
-                break;
-            case 2:
-                time="24";
-                break;
-        }
-
         switch (selectOption){
             case 'free':
                 type='프리Edition';
+                ticket_type.setAttribute("value","프리Edition일일권");
                 break;
             case 'ad':
                 type="지역Edition";
+                ticket_type.setAttribute("value","지역Edition일일권");
                 break;
         }
 
 
-        ticket_day=parseInt(ticket_day);
-       switch (ticket_day){
-           case 6:
-                days="7일";
-               break;
-           case 28:
-               days="30일";
-               break;
-           case 170:
-               days="180일";
-               break;
-           case 350:
-               days="365일";
-               break;
-           default:
-               days="일일";
-               break;
-        }
-
-
-       message=type+days+"권"+'('+time+'시간'+')';
+       message=type+"일일권(24시간)";
         if(selectOption=="free"){
-            price=parseInt(ticket_hour)*1000;
+            price=2000;
 
         }
         else{
-            price=parseInt(ticket_hour)*700;
+            price=1500;
 
-        }
-        if(URL=='subscribe'){
-            price*=ticket_day;
         }
 
         ticket_tag.innerText=message;
         total_tag.innerText=price+"원";
     }
 </script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<%--결제툴-아이포트추가--%>
+<script src="/main_page/assets/payform/paying_system.js"></script>
+
 </body>
 </html>

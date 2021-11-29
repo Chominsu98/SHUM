@@ -11,7 +11,8 @@ li {
 
 #map {
     width:100%;
-    height: 83vh;
+    height: 76vh;
+    /*맵 지도 크기를 결정한다*/
 }
 
 .booth_info {
@@ -41,8 +42,8 @@ li {
     position: absolute;
     bottom: 20px;
     left: 20px;
-    width: 80px;
-    height: 80px;
+    width: 3em;
+    height: 3em;
     z-index: 10;
     cursor: pointer;
 }
@@ -55,8 +56,8 @@ li {
     position: absolute;
     bottom: 20px;
     right: 20px;
-    width: 80px;
-    height: 80px;
+    width: 3em;
+    height: 3em;
     z-index: 10;
     cursor: pointer;
 }
@@ -192,6 +193,7 @@ li {
 }
 
 .booth {
+    font-family: 'Nanum Gothic';
     position: absolute;
     width: 94%;
     height: 160px;
@@ -199,9 +201,9 @@ li {
     bottom: 20px;
     transform: translate(-50%);
     z-index: 10;
-    background: white;
+    background: #ffffffb0;;
     color: black;
-    border: solid 5px green;
+    border: solid 5px #dc3545;
     border-radius: 20px;
 }
 

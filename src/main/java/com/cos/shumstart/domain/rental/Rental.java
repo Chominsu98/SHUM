@@ -28,10 +28,18 @@ public class Rental {
     @JoinColumn(name="umbrellaId", referencedColumnName = "id")
     private Umbrella umbrella;
 
+    private boolean activation;
+
     private LocalDateTime createDate;
+
+    private LocalDateTime returnDate;
 
     @PrePersist
     public void createDate() {
         this.createDate = LocalDateTime.now();
+    }
+
+    public boolean getActivation() {
+        return this.activation;
     }
 }

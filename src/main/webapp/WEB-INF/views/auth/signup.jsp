@@ -5,33 +5,7 @@
 
 <head>
     <title>회원가입</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor_for_formtag/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/fonts/iconic/css/material-design-iconic-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor_for_formtag/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor_for_formtag/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor_for_formtag/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor_for_formtag/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor_for_formtag/daterangepicker/daterangepicker.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/css_for_formtag/main.css">
-    <link rel="stylesheet" type="text/css" href="/login/css_for_formtag/util.css">
-    <!--===============================================================================================-->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic:wght@400;800&display=swap" rel="stylesheet">
+    <jsp:include page="../layout/same_css_form.jsp" flush="false"></jsp:include>
 
     <style>
         .limiter {
@@ -110,22 +84,7 @@
 
 <div id="dropDownSelect1"></div>
 
-<!--===============================================================================================-->
-<script src="/login/vendor_for_formtag/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-<script src="/login/vendor_for_formtag/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-<script src="/login/vendor_for_formtag/bootstrap/js/popper.js"></script>
-<script src="/login/vendor_for_formtag/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="/login/vendor_for_formtag/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script src="/login/vendor_for_formtag/daterangepicker/moment.min.js"></script>
-<script src="/login/vendor_for_formtag/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-<script src="/login/vendor_for_formtag/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-<script src="/login/js_for_formtag/main.js"></script>
+<jsp:include page="../layout/same_script_form.jsp" flush="false"></jsp:include>
 
 </body>
 

@@ -24,6 +24,19 @@
     $('.validate-form').on('submit',function(){
         var check = true;
 
+        try{
+            var new_password_input=document.getElementById("new_password").value;
+            var new_password_check=document.getElementById("new_password_check").value;
+            var alert_password=document.getElementById("alert_password");
+
+            if(new_password_input!=new_password_check){
+                check=false;
+                alert_password.innerText="❌비밀번호가 서로 다릅니다❌"
+            }
+        }catch(e){
+            check=true;
+        }
+
         for(var i=0; i<input.length; i++) {
             if(validate(input[i]) == false){
                 showValidate(input[i]);

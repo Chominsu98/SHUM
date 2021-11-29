@@ -25,12 +25,22 @@ public class Voucher {
 
     private String ticketType;
 
+    //이용권이 가지고 있는 예약번호가 될 것이다.
+    private String reservationCode;
+
     private LocalDateTime voucherStartDate;
+    private LocalDateTime voucherEndDate;
 
     private LocalDateTime createDate;
+
+    private boolean activation;
 
     @PrePersist
     public void createDate() {
         this.createDate = LocalDateTime.now();
+    }
+
+    public boolean getActivation() {
+        return this.activation;
     }
 }

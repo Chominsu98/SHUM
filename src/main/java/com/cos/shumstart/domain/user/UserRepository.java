@@ -20,4 +20,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying
     @Query("UPDATE User u SET u.lateFee = :lateFee WHERE u.id = :id")
     int updateLateFee(int lateFee, int id);
+
+    @Modifying
+    @Query("UPDATE User u SET u.lateFeeStack = :lateFeeStack WHERE u.id = :id")
+    int updateLateFeeStack(double lateFeeStack, int id);
 }

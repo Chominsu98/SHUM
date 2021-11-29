@@ -1,7 +1,6 @@
 package com.cos.shumstart.domain.umbrella;
 
 import com.cos.shumstart.domain.booth.Booth;
-import com.cos.shumstart.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

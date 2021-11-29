@@ -1,43 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
     <title>☔Shum_우산같이쓸래요☔</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/login/background/css/main.css" />
-
     <link rel="icon" type="image/png" href="/login/images/favicon.ico"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor_for_formtag/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/fonts/iconic/css/material-design-iconic-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor_for_formtag/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor_for_formtag/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor_for_formtag/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor_for_formtag/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor_for_formtag/daterangepicker/daterangepicker.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/css_for_formtag/main.css">
-    <link rel="stylesheet" type="text/css" href="/login/css_for_formtag/util.css">
-    <!--===============================================================================================-->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic:wght@400;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <jsp:include page="../layout/same_css_form.jsp" flush="false"></jsp:include>
 
     <style>
-    h1,a,p{
+    h1,h5,a,p,label{
         font-family: 'Do Hyeon', sans-serif !important;
         color:white;
     }
@@ -49,6 +26,9 @@
         display: block;
     }
 
+    a{
+        font-size: 1.2em;
+    }
     /*체크박스 관련 css*/
     .checkbox-wrap {
     display: block;
@@ -107,9 +87,9 @@
     padding-right:2.5rem!important;
     }
 
-    img{
-        width: 108%;
-        height: 235px;
+    .login_form_logo{
+        width: 85%;
+        height: 6.6em;
         overflow: hidden;
         position: relative;
         padding: -101px;
@@ -117,20 +97,31 @@
         top: 60px;
 
     }
+    .websize_logo{
+        width: 60%;
+        overflow: hidden;
+        position: relative;
+        padding: -101px;
+        left: -9px;
+        top: 1em;
+    }
 
     @media screen and (max-width: 480px){
-        img{
-            width: 96%;
-            height: 222px;
+        .login_form_logo{
+            width: 85%;
+            height: 6.6em;
             overflow: hidden;
             position: relative;
-            top: 104px;
+            top: 0.25em;
             left: -1px;
 
         }
     }
     @media screen and (max-width: 480px){
         h2{
+            display: none;
+        }
+        .websize_logo{
             display: none;
         }
     }
@@ -144,7 +135,25 @@
         text-align: center;
         font-size:23px;
     }
+    .notification{
+        font-family: 'Nanum Gothic',sans-serif !important;
+        font-size: 22px;
+        line-height: 1.7;
+        color: #ffffff;
+        margin: 13px;
+    }
+    @media (max-width: 576px) {
+        .wrap-login100 {
+            margin-top: 10em;
+        }
+
+        .container-login100{
+            background-color: rgb(0 0 0 / 0%);
+        }
+    }
+
     </style>
+    <jsp:include page="../popup_layout/same_css.jsp" flush="false"></jsp:include>
 </head>
 
 <body class="is-preload">
@@ -152,21 +161,20 @@
         <div class="limiter">
             <div class="container-login100" style="margin-top:50px;">
                 <header id="header" style="padding-top: 0px;">
-                    <img src="/images/로고디자인4.PNG">
+                    <img class="websize_logo" src="/images/우산후보_무테검.png">
                     <h2 class="logo" >Don't waste it<br>Just rent it! </h2>
                 </header>
                 <div class="wrap-login100">
                     <form class="login100-form validate-form" action="/auth/signin" method="POST">
-                                    <span class="login100-form-title p-b-5">
-                                        <h1>로그인</h1>
-                                    </span>
+
                         <span class="login100-form-title p-b-25">
-                                        <i class="zmdi zmdi-lock-outline"></i>
+<%--                                        <i class="zmdi zmdi-lock-outline"></i>--%>
+                            <img class="login_form_logo" src="/images/우산후보_흰투작.png">
                         </span>
 
-                        <p class="notify">혹시 지금 우산이 없으신가요❓<br>사지말고 빌려서 쓰세요 </p>
+<%--                        <p class="notify">혹시 지금 우산이 없으신가요❓<br>사지말고 빌려서 쓰세요 </p>--%>
                         <div class="wrap-input100 validate-input" data-validate = "아이디를 입력해주세요">
-                            <input class="input100" type="text" name="username">
+                            <input class="input100" type="text" name="username" id="id">
                             <span class="focus-input100" data-placeholder="유저네임"></span>
                         </div>
 
@@ -174,15 +182,15 @@
                                         <span class="btn-show-pass">
                                             <i class="zmdi zmdi-eye"></i>
                                         </span>
-                            <input class="input100" type="password" name="password">
+                            <input class="input100" type="password" name="password" id="password">
                             <span class="focus-input100" data-placeholder="비밀번호"></span>
                         </div>
 
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
-                                <button class="login100-form-btn">
-                                    SignIn
+                                <button class="login100-form-btn" onclick="afterLogin();">
+                                    로그인
                                 </button>
                             </div>
                         </div>
@@ -190,18 +198,15 @@
                         <div class="form-group d-md-flex">
                             <div class="w-50">
                                 <label class="checkbox-wrap checkbox-primary">🔑자동로그인
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" id="saveBox" checked>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <div class="w-50 text-md-right">
-                                <a href="#" style="color: #fff">비밀번호찾기</a>
-                            </div>
                         </div>
-                        <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+                        <p class="w-100 text-center">&mdash; 서비스 이용 &mdash;</p>
                         <div class="social d-flex text-center" style="position: relative; right:-20px;">
-                            <a href="./Main_UI_2/(non_rent)form_gui.html" class="px-2 py-2 mr-md-1 rounded" style="color: white;"><span class="ion-logo-facebook mr-2"></span> 비회원서비스</a>
-                            <a href="./Main_UI_2/map_page.html" class="px-2 py-2 ml-md-1 rounded" style="color: white;"><span class="ion-logo-twitter mr-2"></span>지도보기</a>
+                            <a href="/auth/find_password" class="px-2 py-2 mr-md-1 rounded" style="color: white;"><span class="ion-logo-facebook mr-2"></span>비밀번호찾기</a>
+                            <a onclick="showPopup(true,'#popup_check_verifynum');" class="px-2 py-2 ml-md-1 rounded" style="color: white;"><span class="ion-logo-twitter mr-2"></span>서비스안내</a>
                         </div>
                         <div class="text-center p-t-115">
                             <span class="txt1">
@@ -218,12 +223,34 @@
 
         </div>
 
-<!-- Footer -->
+        <%--팝업모달창--%>
+            <div id="popup" class="hide">
+                <div class="content">
+                    <p class="notification">
+                        ❌아이디 또는 비밀번호가 틀립니다.
+                    </p>
+                    <div class="d-grid gap-2 mx-auto">
+                        <button class="btn btn-primary button-color" onclick="closePopup('#popup',this.value)" ><i class="zmdi zmdi-check-circle"></i>확인</button>
+                    </div>
+                </div>
+            </div>
+
+        <%--팝업모달창--%>
+        <div id="popup_check_verifynum" class="hide">
+            <div class="content">
+                <img src="/images/이벤트팝업-001.jpg" style="height: 30em"/>
+                <div class="d-grid gap-2 mx-auto">
+                    <button class="btn btn-primary button-color" onclick="closePopup('#popup_check_verifynum',this.value)" value="instruction"><i class="zmdi zmdi-search"></i>상세히</button>
+                    <button class="btn btn-primary button-color" onclick="closePopup('#popup_check_verifynum',this.value)" ><i class="zmdi zmdi-check-circle"></i>확인</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
         <footer id="footer" style="margin-top: 10px;">
             <ul class="icons">
-                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                <li><a href="https://www.instagram.com/sharingumbrella/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="https://github.com/Chominsu98/SHUM" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
                 <li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
             </ul>
             <ul class="copyright" style="color:black">
@@ -231,25 +258,102 @@
             </ul>
         </footer>
 
-        <script src="login/background/js/main.js"></script>
+        <script src="/login/background/js/main.js"></script>
+
+        <jsp:include page="../layout/same_script_form.jsp" flush="false"></jsp:include>
+
+        <script>
+
+            var error_value='<c:out value="${error}"/>';
+
+            if(error_value!=""){
+                if (JSON.parse(error_value)==true){
+                    showPopup(true,'#popup');
+                }
+            }
+
+            // dom생성 뒤 아이디 비번에다가 쿠키있으면 쿠키에서 값을 가져와 넣어준다.
+            $(document).ready(function (){
+                var id=getCookie("Cookie_id");
+                var pwd=getCookie("Cookie_pwd");
+
+                if(id){
+                    $("#id").val(id);
+                    $("#password").val(pwd);
+                    $("#saveBox").attr("checked",true);
+                }
+            })
+
+            // 자동로그인 쿠키생성으로 구현
+            function afterLogin(){
+                var id=$("#id").val();
+                var pwd=$("#password").val();
+                var isChecked=$("#saveBox").is(":checked");
+
+                if(id=="" || pwd==""){
+                    return;
+                }
+                if(isChecked){
+                    setCookie("Cookie_id",id);
+                    setCookie("Cookie_pwd",pwd);
+                }
+                else{
+                    deleteCookie("Cookie_id");
+                    deleteCookie("Cookie_pwd");
+                }
+            }
+            // 쿠키생성함수
+            function setCookie(cookieName,value,exdays){
+                var exdate=new Date();
+                exdate.setDate(exdate.getDate()+exdays);
+                var cookieValue=escape(value)+((exdays==null)?"":"; expires="+exdate.toUTCString());
+                document.cookie=cookieName+"="+cookieValue;
+            }
+
+            function getCookie(cookie_name) {
+                var x, y;
+                var val = document.cookie.split(';');
+
+                for (var i = 0; i < val.length; i++) {
+                    x = val[i].substr(0, val[i].indexOf('='));
+                    y = val[i].substr(val[i].indexOf('=') + 1);
+                    x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+
+                    if (x == cookie_name) {
+                        return unescape(y); // unescape로 디코딩 후 값 리턴
+                    }
+                }
+            }
+            //쿠키값 Delete
+            function deleteCookie(cookieName){
+                var expireDate = new Date();
+                expireDate.setDate(expireDate.getDate() - 1);
+                document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+            }
 
 
-        <!--===============================================================================================-->
-        <script src="/login/vendor_for_formtag/jquery/jquery-3.2.1.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="/login/vendor_for_formtag/animsition/js/animsition.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="/login/vendor_for_formtag/bootstrap/js/popper.js"></script>
-        <script src="/login/vendor_for_formtag/bootstrap/js/bootstrap.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="/login/vendor_for_formtag/select2/select2.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="/login/vendor_for_formtag/daterangepicker/moment.min.js"></script>
-        <script src="/login/vendor_for_formtag/daterangepicker/daterangepicker.js"></script>
-        <!--===============================================================================================-->
-        <script src="/login/vendor_for_formtag/countdowntime/countdowntime.js"></script>
-        <!--===============================================================================================-->
-        <script src="/login/js_for_formtag/main.js"></script>
+            function showPopup(hasFilter,id) {
+                const popup = document.querySelector(id);
+
+                if (hasFilter) {
+                    popup.classList.add('has-filter');
+                } else {
+                    popup.classList.remove('has-filter');
+                }
+
+                popup.classList.remove('hide');
+            }
+
+            function closePopup(id,state) {
+                const popup = document.querySelector(id);
+                popup.classList.add('hide');
+
+                if(state=="instruction"){
+                    window.location="/instruction/history";
+                }
+            }
+        </script>
+
 
 
 </body>

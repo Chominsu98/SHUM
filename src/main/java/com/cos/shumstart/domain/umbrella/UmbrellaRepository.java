@@ -1,6 +1,5 @@
 package com.cos.shumstart.domain.umbrella;
 
-import com.cos.shumstart.domain.umbrella.Umbrella;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

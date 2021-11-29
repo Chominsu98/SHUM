@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-	<title>My 페이지</title>
+	<title>이용권정보</title>
 
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -66,6 +66,24 @@
 		.spotlight:nth-child(2) {
 			background-color: rgb(0 0 0 / 0%);
 		}
+
+		.show_voucher{
+			background: #dc3545cc;
+		}
+
+		.rental_info td{
+			color:#2E3842;
+		}
+
+		.show_when_not_rent{
+			color:#2E3842;
+			text-align: justify;
+		}
+
+		.head-background-rental-info{
+			background-color: #21b2a682;
+		}
+
 	</style>
 </head>
 <body class="is-preload">
@@ -75,28 +93,61 @@
 	<!-- Main -->
 	<article id="main">
 		<header>
-			<h2>마이 페이지</h2>
+			<h2>이용권 정보</h2>
+			<p>회원님의 대여현황과 이용권정보를 확인하세요</p>
 		</header>
 
-		<section class="wrapper style5">
-			<h2>${user.name}님</h2>
-			<c:choose>
-				<c:when test="${user.state == true}">
-					<h4>${umbrella.umbrella.id}번 우산을 대여 중입니다.</h4>
-				</c:when>
-				<c:otherwise>
-					<h4>대여중인 우산이 없습니다.</h4>
-				</c:otherwise>
-			</c:choose>
 
-			<button type="button" onclick="location.href='/'">메인 화면으로</button>
-			<button type="button" onclick="history.back()">뒤로 가기</button>
+		<section class="wrapper style5">
+			<div class="inner">
+				<h4>📢대여현황</h4>
+				<c:choose>
+					<c:when test="${user.state==true}">
+						<table class="table table-hover">
+							<thead class="head-background-rental-info">
+							<tr >
+								<th colspan=2 scope="col">💧${user.name}님의 대여정보</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr class="rental_info">
+								<th scope="row">우산모델:</th>
+								<td>${umbrella.umbrella.umbrellaType}</td>
+							</tr>
+							<tr class="rental_info">
+								<th scope="row">우산번호:</th>
+								<td>${umbrella.umbrella.id}</td>
+							</tr>
+							</tbody>
+						</table>
+					</c:when>
+					<c:otherwise>
+						<table class="table table-hover">
+							<thead class="head-background-rental-info">
+							<tr >
+								<th colspan=2 scope="col" class="show_when_not_rent">📢${user.name}님께서는 아직<br> 우산을 대여하시지 않으셨어요...😢</th>
+							</tr>
+							</thead>
+						</table>
+					</c:otherwise>
+				</c:choose>
+
+
+			</div>
 		</section>
 
 		<section id="one" class="wrapper style1 special">
 			<div class="inner">
+				<h4 class="show_voucher">이용권정보</h4>
+
 				<c:choose>
 					<c:when test="${user.haveTicket == true}">
+						<div class="box alt">
+							<div class="row gtr-50 gtr-uniform" style="margin-right: 0.05em;">
+								<div class="col-12"><span class="image fit" id="qrcode"></span></div>
+
+							</div>
+						</div>
 						<c:choose>
 							<c:when test="${voucher.voucherStartDate != null}">
 								<c:set var="returnTime" value="${voucher.voucherStartDate}"/>
@@ -121,16 +172,16 @@
 									<thead class="head-background">
 
 									<tr >
-										<th colspan=2 scope="col">예약번호:12345432345</th>
+										<th colspan=2 scope="col">예약번호:${voucher.reservationCode}</th>
 									</tr>
 									</thead>
 									<tbody>
-									<tr class="moveto_ticket">
+									<tr class="">
 										<th scope="row">🌧이용권명:</th>
 										<td>📆${voucher.ticketType}</td>
 
 									</tr>
-									<tr class="moveto_ticket">
+									<tr class="">
 										<th scope="row">🌧사용가능시간:</th>
 										<td>🕒24시간</td>
 
@@ -153,16 +204,16 @@
 									<thead class="head-background">
 
 									<tr >
-										<th colspan=2 scope="col">예약번호:12345432345</th>
+										<th colspan=2 scope="col">예약번호:${voucher.reservationCode}</th>
 									</tr>
 									</thead>
 									<tbody>
-									<tr class="moveto_ticket">
+									<tr class="">
 										<th scope="row">🌧이용권명:</th>
 										<td>📆${voucher.ticketType}</td>
 
 									</tr>
-									<tr class="moveto_ticket">
+									<tr class="">
 										<th scope="row">🌧사용가능시간:</th>
 										<td>🕒24시간</td>
 
@@ -184,11 +235,14 @@
 					</c:when>
 					<c:otherwise>
 						<h2>구매한 이용권이 없습니다.</h2>
-						<a href="/charge/payform/day" class="button fit ">구매하러 가기</a>
+						<a href="/charge/payform" class="button fit ">구매하러 가기</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
 		</section>
+
+
+
 
 		<jsp:include page="../layout/same_footer.jsp" flush="false"></jsp:include>
 	</article>
@@ -197,20 +251,15 @@
 <jsp:include page="../layout/same_script.jsp" flush="false"></jsp:include>
 <script type="text/javascript">
 
+	var code='<c:out value="${voucher.reservationCode}"/> '
 	var qrcode = new QRCode(document.getElementById("qrcode"), {
 		width : 100,
-		height : 100
+		height : 100,
+		text:code,
+		colorDark : "#000000",
+		colorLight : "#ffffff",
+		correctLevel : QRCode.CorrectLevel.H
 	});
-
-	function makeCode () {
-		var elText = document.getElementById("text");
-
-
-
-		qrcode.makeCode("내이름은조민수");
-	}
-
-	makeCode();
 
 </script>
 

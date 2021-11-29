@@ -8,13 +8,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <jsp:include page="../layout/same_css.jsp" flush="false"></jsp:include>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <style>
         h3{
             font-size:1.5em;
         }
 
 
+        #main > header p {
+            color: inherit;
+            letter-spacing: 0em;
+            text-transform: uppercase;
+            top: 0;
+        }
         .head-background{
             background-color: #ff0000ad !important;
             font-family: 'Do Hyeon', sans-serif !important;
@@ -70,6 +76,19 @@
         button{
             font-family: 'Do Hyeon', sans-serif !important;
         }
+
+        section{
+            margin:-0.7em;
+        }
+        table th,td{
+            font-family:"Do Hyeon";
+            font-size: 0.92em;
+        }
+        .button-series{
+            background-color: #ff5252;
+            border-color: #ff5252;
+        }
+
     </style>
 </head>
 <body class="is-preload">
@@ -89,34 +108,13 @@
 
 
         <section>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position:inherit;background-color: white!important;">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#"><h5 style="font-family:'Nanum Gothic',sans-serif !important;"><i class="far fa-compass"></i>현위치:</h5></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="./map_page.html">📄지도보기</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">⭐즐겨찾기</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">💦최근이용</a>
-                        </li>
-                        </li>
-
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="🔎지역검색" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">검색</button>
-                    </form>
-                </div>
+            <div style="margin-bottom: 2em">
+                <a class="btn btn-primary button-series" onclick="history.back()"> <i class="zmdi zmdi-arrow-left"></i>뒤로가기</a>
+                <a class="btn btn-primary button-series" style="float:right" href="/charge/payform"><i class="zmdi zmdi-shopping-cart"></i>이용권사기</a>
             </div>
-        </nav>
+
+
+
         <h4>부스넘버${booth.id}</h4>
 
         <%--팝업모달창--%>
@@ -130,9 +128,11 @@
                     </c:when>
                     <c:otherwise>
                         <p>
-                            회원님께서는 보유하고 있는 이용권이 없습니다.
+                            ❌회원님께서는 보유하고 있는 이용권이 없습니다.
                         </p>
-                        <button  class="button primary icon far fa-check-square" onclick="closePopup()" id="buyticket">이용권사러가기</button>
+                        <div class="d-grid gap-2 mx-auto">
+                            <a class="btn btn-primary button-color" onclick="closePopup()" ><i class="zmdi zmdi-check-circle"></i>확인</a>
+                        </div>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -225,14 +225,14 @@
     const popup = document.querySelector('#popup');
     var way;
     if(id=="useticket"){
-        way="/charge/charge"//이용권큐알페이지로 바로 이동
+        way="/charge/QRcodePage"//이용권큐알페이지로 바로 이동
     }
     else if(id=="close"){
         popup.classList.add('hide');
         return;
     }
     else{
-        way="/charge/payway";
+        way="/charge/payform";//이용권사러가기페이지 이동
     }
     popup.classList.add('hide');
     window.location=way;
