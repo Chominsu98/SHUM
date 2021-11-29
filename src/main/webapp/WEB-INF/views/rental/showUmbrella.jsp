@@ -94,156 +94,156 @@
 <body class="is-preload">
 
 <!-- Page Wrapper -->
-<div id="page-wrapper">
-    <jsp:include page="../layout/same_menu.jsp" flush="false"></jsp:include>
+    <div id="page-wrapper">
+        <jsp:include page="../layout/same_menu.jsp" flush="false"></jsp:include>
 
     <!-- Main -->
-    <article id="main">
-        <header>
-            <h2>사용가능우산</h2>
-            <p>광운대의 우산정보들을 한 눈에 봐보세요</p>
-        </header>
+        <article id="main">
+            <header>
+                <h2>사용가능우산</h2>
+                <p>광운대의 우산정보들을 한 눈에 봐보세요</p>
+            </header>
         <section class="wrapper style5">
             <div class="inner">
 
 
-                <section>
-                    <div style="margin-bottom: 2em">
-                        <a class="btn btn-primary button-series" onclick="history.back()"> <i class="zmdi zmdi-arrow-left"></i>뒤로가기</a>
-                        <a class="btn btn-primary button-series" style="float:right" href="/charge/payform"><i class="zmdi zmdi-shopping-cart"></i>이용권사기</a>
-                    </div>
+        <section>
+            <div style="margin-bottom: 2em">
+                <a class="btn btn-primary button-series" onclick="history.back()"> <i class="zmdi zmdi-arrow-left"></i>뒤로가기</a>
+                <a class="btn btn-primary button-series" style="float:right" href="/charge/payform"><i class="zmdi zmdi-shopping-cart"></i>이용권사기</a>
+            </div>
 
 
 
-                    <h4>부스넘버${booth.id}</h4>
+        <h4>부스넘버${booth.id}</h4>
 
-                    <%--팝업모달창--%>
-                    <div id="popup" class="hide">
-                        <div class="content">
-                            <c:choose>
-                                <c:when test="${user.haveTicket==true}">
-                                    <p>이용권을 사용하시겠습니까?</p>
-                                    <button  class="button primary icon far fa-check-square" onclick="closePopup(this.id)" id="useticket">이용권사용</button>
-                                    <button class="button primary icon far fa-check-square" onclick="closePopup(this.id)" style="margin-left: 37px;" id="close" >닫기</button>
-                                </c:when>
-                                <c:otherwise>
-                                    <p>
-                                        ❌회원님께서는 보유하고 있는 이용권이 없습니다.
-                                    </p>
-                                    <div class="d-grid gap-2 mx-auto">
-                                        <a class="btn btn-primary button-color" onclick="closePopup()" ><i class="zmdi zmdi-check-circle"></i>확인</a>
-                                    </div>
-                                </c:otherwise>
-                            </c:choose>
+        <%--팝업모달창--%>
+        <div id="popup" class="hide">
+            <div class="content">
+                <c:choose>
+                    <c:when test="${user.haveTicket==true}">
+                        <p>이용권을 사용하시겠습니까?</p>
+                        <button  class="button primary icon far fa-check-square" onclick="closePopup(this.id)" id="useticket">이용권사용</button>
+                        <button class="button primary icon far fa-check-square" onclick="closePopup(this.id)" style="margin-left: 37px;" id="close" >닫기</button>
+                    </c:when>
+                    <c:otherwise>
+                        <p>
+                            ❌회원님께서는 보유하고 있는 이용권이 없습니다.
+                        </p>
+                        <div class="d-grid gap-2 mx-auto">
+                            <a class="btn btn-primary button-color" onclick="closePopup()" ><i class="zmdi zmdi-check-circle"></i>확인</a>
                         </div>
-                    </div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </div>
 
-                    <table class="table table-hover">
-                        <thead class="head-background">
+        <table class="table table-hover">
+            <thead class="head-background">
 
-                        <tr >
-                            <th scope="col">가능</th>
-                            <th scope="col">거치대</th>
-                            <th scope="col">타입</th>
-                            <th scope="col">상태</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach var="umbrella" items="${booth.umbrellas}">
-                            <c:choose>
-                                <c:when test="${umbrella.brokenState == false}">
-                                    <tr class="moveto_ticket">
-                                        <th scope="row">
-                                            <c:choose>
-                                                <c:when test="${umbrella.rentalState==true}">
-                                                    ❌
-                                                </c:when>
-                                                <c:otherwise>
-                                                    ✔
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </th>
-                                        <td>${umbrella.umbrellaNumber}</td>
-                                        <td>${umbrella.umbrellaType}</td>
-                                        <td>
-                                            <c:choose>
-                                                <c:when test="${umbrella.rentalState==true}">
-                                                    대여중
-                                                </c:when>
-                                                <c:otherwise>
-                                                    대여가능
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
-                                    </tr>
-                                </c:when>
-                            </c:choose>
-                        </c:forEach>
-                        </tbody>
-                        <tfoot class="total-count">
-                        <tr>
-                            <th scope="">대여가능개수</th>
-                            <td colspan="3" style="font-size:30px">${booth.leftFreeUmbrella + booth.leftLocationUmbrella}</td>
-                        </tr>
-                        </tfoot>
-                    </table>
+            <tr >
+                <th scope="col">가능</th>
+                <th scope="col">거치대</th>
+                <th scope="col">타입</th>
+                <th scope="col">상태</th>
+            </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="umbrella" items="${booth.umbrellas}">
+                    <c:choose>
+                        <c:when test="${umbrella.brokenState == false}">
+                            <tr class="moveto_ticket">
+                                <th scope="row">
+                                    <c:choose>
+                                        <c:when test="${umbrella.rentalState==true}">
+                                            ❌
+                                        </c:when>
+                                        <c:otherwise>
+                                            ✔
+                                        </c:otherwise>
+                                    </c:choose>
+                                </th>
+                                <td>${umbrella.umbrellaNumber}</td>
+                                <td>${umbrella.umbrellaType}</td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${umbrella.rentalState==true}">
+                                            대여중
+                                        </c:when>
+                                        <c:otherwise>
+                                            대여가능
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                            </tr>
+                        </c:when>
+                    </c:choose>
+                </c:forEach>
+            </tbody>
+            <tfoot class="total-count">
+                <tr>
+                <th scope="">대여가능개수</th>
+                <td colspan="3" style="font-size:30px">${booth.leftFreeUmbrella + booth.leftLocationUmbrella}</td>
+                </tr>
+            </tfoot>
+            </table>
 
 
 
-                </section>
+            </section>
 
             </div>
-        </section>
-    </article>
+            </section>
+            </article>
 
-    <jsp:include page="../layout/same_footer.jsp" flush="false"></jsp:include>
-</div>
+            <jsp:include page="../layout/same_footer.jsp" flush="false"></jsp:include>
+            </div>
 
-<!-- Scripts -->
-<script>
+    <!-- Scripts -->
+    <script>
 
 
 
     $(".moveto_ticket").click(function(){
         showPopup(true);
-        // window.location="#";
+    // window.location="#";
     });
 
     function showPopup(hasFilter) {
-        const popup = document.querySelector('#popup');
+    const popup = document.querySelector('#popup');
 
-        if (hasFilter) {
-            popup.classList.add('has-filter');
-        } else {
-            popup.classList.remove('has-filter');
-        }
+    if (hasFilter) {
+        popup.classList.add('has-filter');
+    } else {
+        popup.classList.remove('has-filter');
+    }
 
-        popup.classList.remove('hide');
+    popup.classList.remove('hide');
     }
 
     function closePopup(id) {
-        const popup = document.querySelector('#popup');
-        var way;
-        if(id=="useticket"){
-            way="/charge/QRcodePage"//이용권큐알페이지로 바로 이동
-        }
-        else if(id=="close"){
-            popup.classList.add('hide');
-            return;
-        }
-        else{
-            way="/charge/payform";//이용권사러가기페이지 이동
-        }
-        popup.classList.add('hide');
-        window.location=way;
+    const popup = document.querySelector('#popup');
+    var way;
+    if(id=="useticket"){
+        way="/charge/QRcodePage"//이용권큐알페이지로 바로 이동
     }
-</script>
+    else if(id=="close"){
+        popup.classList.add('hide');
+        return;
+    }
+    else{
+        way="/charge/payform";//이용권사러가기페이지 이동
+    }
+    popup.classList.add('hide');
+    window.location=way;
+    }
+    </script>
 
 
-<jsp:include page="../layout/same_script.jsp" flush="false"></jsp:include>
+    <jsp:include page="../layout/same_script.jsp" flush="false"></jsp:include>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
-</body>
+    </body>
 </html>

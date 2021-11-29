@@ -104,22 +104,22 @@
             <!-- <p>첫 대여 후 이용기간 동안 무제한 반복 대여 가능</p>정기권 설명서 -->
 
         </header>
-        <section class="wrapper style5">
-            <div class="inner">
-                <h4>결제하기</h4>
-                <section class="spotlight">
-                    <div class="image"><img src="/images/pic01.jpg" alt="" /></div>
-                </section>
-                <h5>기본대여시간</h5>
-                <div class="col-12">
-                    <select name="demo-category" id="tickets" onchange="change_select()">
-                        <option value="ad">지역Edition일일권</option>
-                        <option value="free">프리Edition일일권</option>
-                    </select>
-                </div>
+                <section class="wrapper style5">
+                    <div class="inner">
+                        <h4>결제하기</h4>
+                        <section class="spotlight">
+                            <div class="image"><img src="/images/pic01.jpg" alt="" /></div>
+                        </section>
+                        <h5>기본대여시간</h5>
+                        <div class="col-12">
+                            <select name="demo-category" id="tickets" onchange="change_select()">
+                                <option value="ad">지역Edition일일권</option>
+                                <option value="free">프리Edition일일권</option>
+                            </select>
+                        </div>
 
-            </div>
-        </section>
+                    </div>
+                </section>
 
 
 
@@ -128,8 +128,8 @@
             <div class="inner">
                 <header class="major">
                     <h2>결제금액</h2>
-                    <p id="total-selected-ticket">지역Edition일일권(24시간)</p>
-                    <h4 id="total-price">1500원</h4>
+                        <p id="total-selected-ticket">지역Edition일일권(24시간)</p>
+                        <h4 id="total-price">1500원</h4>
                 </header>
                 <form onsubmit="return false;">
                     <input type="hidden" name="ticketType" value="지역Edition일일권" id="ticketType">
@@ -239,7 +239,7 @@
         }
 
 
-        message=type+"일일권(24시간)";
+       message=type+"일일권(24시간)";
         if(selectOption=="free"){
             price=2000;
 

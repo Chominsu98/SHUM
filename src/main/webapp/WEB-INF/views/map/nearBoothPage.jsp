@@ -74,17 +74,17 @@
 					<h4>내 위치 주변</h4>
 
 					<c:forEach var="s" items="${boothList}">
-						<div class="card">
-							<h5 class="card-header">부스넘버${s.id}</h5>
-							<div class="card-body form-card">
-								<h3 class="card-title">${s.boothName}</h3>
-								<p class="card-text">☂지역Edition: ${s.leftLocationUmbrella}개</p>
-								<hr>
-								<p class="form-card-free">🌂프리Edition: ${s.leftFreeUmbrella}개</p>
-								<h2 class="form-card-total-left">${s.leftLocationUmbrella + s.leftFreeUmbrella}개</h2>
-								<a href="/rental/showUmbrella/${s.id}" class="btn btn-primary">이용권사용</a>
-							</div>
+					<div class="card">
+						<h5 class="card-header">부스넘버${s.id}</h5>
+						<div class="card-body form-card">
+							<h3 class="card-title">${s.boothName}</h3>
+							<p class="card-text">☂지역Edition: ${s.leftLocationUmbrella}개</p>
+							<hr>
+							<p class="form-card-free">🌂프리Edition: ${s.leftFreeUmbrella}개</p>
+							<h2 class="form-card-total-left">${s.leftLocationUmbrella + s.leftFreeUmbrella}개</h2>
+							<a href="/rental/showUmbrella/${s.id}" class="btn btn-primary">이용권사용</a>
 						</div>
+					</div>
 					</c:forEach>
 				</section>
 			</div>

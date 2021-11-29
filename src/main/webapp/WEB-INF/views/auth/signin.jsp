@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -14,143 +14,143 @@
     <jsp:include page="../layout/same_css_form.jsp" flush="false"></jsp:include>
 
     <style>
-        h1,h5,a,p,label{
-            font-family: 'Do Hyeon', sans-serif !important;
-            color:white;
-        }
+    h1,h5,a,p,label{
+        font-family: 'Do Hyeon', sans-serif !important;
+        color:white;
+    }
 
-        #main_box{
-            padding: inherit;
-            margin:10px;
-            background-color: rgba(0,0,0,0.3);
-            display: block;
-        }
+    #main_box{
+        padding: inherit;
+        margin:10px;
+        background-color: rgba(0,0,0,0.3);
+        display: block;
+    }
 
-        a{
-            font-size: 1.2em;
-        }
-        /*체크박스 관련 css*/
-        .checkbox-wrap {
-            display: block;
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        .checkmark:after {
-            content: "\f0c8";
-            font-family: "FontAwesome";
-            position: absolute;
-            color: rgba(255, 255, 255, 0.1);
-            font-size: 20px;
-            margin-top: -4px;
-            -webkit-transition: 0.3s;
-            -o-transition: 0.3s;
-            transition: 0.3s;
-        }
+    a{
+        font-size: 1.2em;
+    }
+    /*체크박스 관련 css*/
+    .checkbox-wrap {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    }
+    .checkmark:after {
+    content: "\f0c8";
+    font-family: "FontAwesome";
+    position: absolute;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 20px;
+    margin-top: -4px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    }
 
-        /* Hide the browser's default checkbox */
-        .checkbox-wrap input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            height: 0;
-            width: 0;
-        }
+    /* Hide the browser's default checkbox */
+    .checkbox-wrap input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    }
 
-        /* Create a custom checkbox */
-        .checkmark {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        .checkbox-wrap input:checked ~ .checkmark:after {
-            display: block;
-            content: "\f14a";
-            font-family: "FontAwesome";
-            color: rgba(0, 0, 0, 0.2); }
+    /* Create a custom checkbox */
+    .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    }
+    .checkbox-wrap input:checked ~ .checkmark:after {
+    display: block;
+    content: "\f14a";
+    font-family: "FontAwesome";
+    color: rgba(0, 0, 0, 0.2); }
 
-        /* Style the checkmark/indicator */
-        .checkbox-primary {
-            color: #fbceb5; }
-        .checkbox-primary input:checked ~ .checkmark:after {
-            color: #fbceb5;
-        }
+    /* Style the checkmark/indicator */
+    .checkbox-primary {
+    color: #fbceb5; }
+    .checkbox-primary input:checked ~ .checkmark:after {
+    color: #fbceb5;
+    }
 
-        .px-2{
-            padding-right:2.5rem!important;
-        }
+    .px-2{
+    padding-right:2.5rem!important;
+    }
 
+    .login_form_logo{
+        width: 85%;
+        height: 6.6em;
+        overflow: hidden;
+        position: relative;
+        padding: -101px;
+        left: -9px;
+        top: 60px;
+
+    }
+    .websize_logo{
+        width: 60%;
+        overflow: hidden;
+        position: relative;
+        padding: -101px;
+        left: -9px;
+        top: 1em;
+    }
+
+    @media screen and (max-width: 480px){
         .login_form_logo{
             width: 85%;
             height: 6.6em;
             overflow: hidden;
             position: relative;
-            padding: -101px;
-            left: -9px;
-            top: 60px;
+            top: 0.25em;
+            left: -1px;
 
+        }
+    }
+    @media screen and (max-width: 480px){
+        h2{
+            display: none;
         }
         .websize_logo{
-            width: 60%;
-            overflow: hidden;
-            position: relative;
-            padding: -101px;
-            left: -9px;
-            top: 1em;
+            display: none;
+        }
+    }
+    .logo{
+        font-family: 'Permanent Marker', cursive;
+        font-size:64px;
+        color:white;
+    }
+    .notify{
+        color:white;
+        text-align: center;
+        font-size:23px;
+    }
+    .notification{
+        font-family: 'Nanum Gothic',sans-serif !important;
+        font-size: 22px;
+        line-height: 1.7;
+        color: #ffffff;
+        margin: 13px;
+    }
+    @media (max-width: 576px) {
+        .wrap-login100 {
+            margin-top: 10em;
         }
 
-        @media screen and (max-width: 480px){
-            .login_form_logo{
-                width: 85%;
-                height: 6.6em;
-                overflow: hidden;
-                position: relative;
-                top: 0.25em;
-                left: -1px;
-
-            }
+        .container-login100{
+            background-color: rgb(0 0 0 / 0%);
         }
-        @media screen and (max-width: 480px){
-            h2{
-                display: none;
-            }
-            .websize_logo{
-                display: none;
-            }
-        }
-        .logo{
-            font-family: 'Permanent Marker', cursive;
-            font-size:64px;
-            color:white;
-        }
-        .notify{
-            color:white;
-            text-align: center;
-            font-size:23px;
-        }
-        .notification{
-            font-family: 'Nanum Gothic',sans-serif !important;
-            font-size: 22px;
-            line-height: 1.7;
-            color: #ffffff;
-            margin: 13px;
-        }
-        @media (max-width: 576px) {
-            .wrap-login100 {
-                margin-top: 10em;
-            }
-
-            .container-login100{
-                background-color: rgb(0 0 0 / 0%);
-            }
-        }
+    }
 
     </style>
     <jsp:include page="../popup_layout/same_css.jsp" flush="false"></jsp:include>
@@ -158,201 +158,201 @@
 
 <body class="is-preload">
 
-<div class="limiter">
-    <div class="container-login100" style="margin-top:50px;">
-        <header id="header" style="padding-top: 0px;">
-            <img class="websize_logo" src="/images/우산후보_무테검.png">
-            <h2 class="logo" >Don't waste it<br>Just rent it! </h2>
-        </header>
-        <div class="wrap-login100">
-            <form class="login100-form validate-form" action="/auth/signin" method="POST">
+        <div class="limiter">
+            <div class="container-login100" style="margin-top:50px;">
+                <header id="header" style="padding-top: 0px;">
+                    <img class="websize_logo" src="/images/우산후보_무테검.png">
+                    <h2 class="logo" >Don't waste it<br>Just rent it! </h2>
+                </header>
+                <div class="wrap-login100">
+                    <form class="login100-form validate-form" action="/auth/signin" method="POST">
 
                         <span class="login100-form-title p-b-25">
 <%--                                        <i class="zmdi zmdi-lock-outline"></i>--%>
                             <img class="login_form_logo" src="/images/우산후보_흰투작.png">
                         </span>
 
-                <%--                        <p class="notify">혹시 지금 우산이 없으신가요❓<br>사지말고 빌려서 쓰세요 </p>--%>
-                <div class="wrap-input100 validate-input" data-validate = "아이디를 입력해주세요">
-                    <input class="input100" type="text" name="username" id="id">
-                    <span class="focus-input100" data-placeholder="유저네임"></span>
-                </div>
+<%--                        <p class="notify">혹시 지금 우산이 없으신가요❓<br>사지말고 빌려서 쓰세요 </p>--%>
+                        <div class="wrap-input100 validate-input" data-validate = "아이디를 입력해주세요">
+                            <input class="input100" type="text" name="username" id="id">
+                            <span class="focus-input100" data-placeholder="유저네임"></span>
+                        </div>
 
-                <div class="wrap-input100 validate-input" data-validate="비밀번호를 입력해주세요">
+                        <div class="wrap-input100 validate-input" data-validate="비밀번호를 입력해주세요">
                                         <span class="btn-show-pass">
                                             <i class="zmdi zmdi-eye"></i>
                                         </span>
-                    <input class="input100" type="password" name="password" id="password">
-                    <span class="focus-input100" data-placeholder="비밀번호"></span>
-                </div>
+                            <input class="input100" type="password" name="password" id="password">
+                            <span class="focus-input100" data-placeholder="비밀번호"></span>
+                        </div>
 
-                <div class="container-login100-form-btn">
-                    <div class="wrap-login100-form-btn">
-                        <div class="login100-form-bgbtn"></div>
-                        <button class="login100-form-btn" onclick="afterLogin();">
-                            로그인
-                        </button>
-                    </div>
-                </div>
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn" onclick="afterLogin();">
+                                    로그인
+                                </button>
+                            </div>
+                        </div>
 
-                <div class="form-group d-md-flex">
-                    <div class="w-50">
-                        <label class="checkbox-wrap checkbox-primary">🔑자동로그인
-                            <input type="checkbox" id="saveBox" checked>
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </div>
-                <p class="w-100 text-center">&mdash; 서비스 이용 &mdash;</p>
-                <div class="social d-flex text-center" style="position: relative; right:-20px;">
-                    <a href="/auth/find_password" class="px-2 py-2 mr-md-1 rounded" style="color: white;"><span class="ion-logo-facebook mr-2"></span>비밀번호찾기</a>
-                    <a onclick="showPopup(true,'#popup_check_verifynum');" class="px-2 py-2 ml-md-1 rounded" style="color: white;"><span class="ion-logo-twitter mr-2"></span>서비스안내</a>
-                </div>
-                <div class="text-center p-t-115">
+                        <div class="form-group d-md-flex">
+                            <div class="w-50">
+                                <label class="checkbox-wrap checkbox-primary">🔑자동로그인
+                                    <input type="checkbox" id="saveBox" checked>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="w-100 text-center">&mdash; 서비스 이용 &mdash;</p>
+                        <div class="social d-flex text-center" style="position: relative; right:-20px;">
+                            <a href="/auth/find_password" class="px-2 py-2 mr-md-1 rounded" style="color: white;"><span class="ion-logo-facebook mr-2"></span>비밀번호찾기</a>
+                            <a onclick="showPopup(true,'#popup_check_verifynum');" class="px-2 py-2 ml-md-1 rounded" style="color: white;"><span class="ion-logo-twitter mr-2"></span>서비스안내</a>
+                        </div>
+                        <div class="text-center p-t-115">
                             <span class="txt1">
                                 아직 회원이 아니신가요?
                             </span>
 
-                    <a class="txt2" href="/auth/signup">
-                        회원가입하기
-                    </a>
+                            <a class="txt2" href="/auth/signup">
+                                회원가입하기
+                            </a>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
+
         </div>
-    </div>
 
-</div>
+        <%--팝업모달창--%>
+            <div id="popup" class="hide">
+                <div class="content">
+                    <p class="notification">
+                        ❌아이디 또는 비밀번호가 틀립니다.
+                    </p>
+                    <div class="d-grid gap-2 mx-auto">
+                        <button class="btn btn-primary button-color" onclick="closePopup('#popup',this.value)" ><i class="zmdi zmdi-check-circle"></i>확인</button>
+                    </div>
+                </div>
+            </div>
 
-<%--팝업모달창--%>
-<div id="popup" class="hide">
-    <div class="content">
-        <p class="notification">
-            ❌아이디 또는 비밀번호가 틀립니다.
-        </p>
-        <div class="d-grid gap-2 mx-auto">
-            <button class="btn btn-primary button-color" onclick="closePopup('#popup',this.value)" ><i class="zmdi zmdi-check-circle"></i>확인</button>
+        <%--팝업모달창--%>
+        <div id="popup_check_verifynum" class="hide">
+            <div class="content">
+                <img src="/images/이벤트팝업-001.jpg" style="height: 30em"/>
+                <div class="d-grid gap-2 mx-auto">
+                    <button class="btn btn-primary button-color" onclick="closePopup('#popup_check_verifynum',this.value)" value="instruction"><i class="zmdi zmdi-search"></i>상세히</button>
+                    <button class="btn btn-primary button-color" onclick="closePopup('#popup_check_verifynum',this.value)" ><i class="zmdi zmdi-check-circle"></i>확인</button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<%--팝업모달창--%>
-<div id="popup_check_verifynum" class="hide">
-    <div class="content">
-        <img src="/images/이벤트팝업-001.jpg" style="height: 30em"/>
-        <div class="d-grid gap-2 mx-auto">
-            <button class="btn btn-primary button-color" onclick="closePopup('#popup_check_verifynum',this.value)" value="instruction"><i class="zmdi zmdi-search"></i>상세히</button>
-            <button class="btn btn-primary button-color" onclick="closePopup('#popup_check_verifynum',this.value)" ><i class="zmdi zmdi-check-circle"></i>확인</button>
-        </div>
-    </div>
-</div>
+        <!-- Footer -->
+        <footer id="footer" style="margin-top: 10px;">
+            <ul class="icons">
+                <li><a href="https://www.instagram.com/sharingumbrella/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="https://github.com/Chominsu98/SHUM" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                <li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+            </ul>
+            <ul class="copyright" style="color:black">
+                <li>&copy; 우산같이쓸래요?</li><li>Credits: <a href="https://www.instagram.com/sharingumbrella/">Developed by 우산같이쓸래요?</a></li>
+            </ul>
+        </footer>
 
-<!-- Footer -->
-<footer id="footer" style="margin-top: 10px;">
-    <ul class="icons">
-        <li><a href="https://www.instagram.com/sharingumbrella/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-        <li><a href="https://github.com/Chominsu98/SHUM" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-        <li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
-    </ul>
-    <ul class="copyright" style="color:black">
-        <li>&copy; 우산같이쓸래요?</li><li>Credits: <a href="https://www.instagram.com/sharingumbrella/">Developed by 우산같이쓸래요?</a></li>
-    </ul>
-</footer>
+        <script src="/login/background/js/main.js"></script>
 
-<script src="/login/background/js/main.js"></script>
+        <jsp:include page="../layout/same_script_form.jsp" flush="false"></jsp:include>
 
-<jsp:include page="../layout/same_script_form.jsp" flush="false"></jsp:include>
+        <script>
 
-<script>
+            var error_value='<c:out value="${error}"/>';
 
-    var error_value='<c:out value="${error}"/>';
-
-    if(error_value!=""){
-        if (JSON.parse(error_value)==true){
-            showPopup(true,'#popup');
-        }
-    }
-
-    // dom생성 뒤 아이디 비번에다가 쿠키있으면 쿠키에서 값을 가져와 넣어준다.
-    $(document).ready(function (){
-        var id=getCookie("Cookie_id");
-        var pwd=getCookie("Cookie_pwd");
-
-        if(id){
-            $("#id").val(id);
-            $("#password").val(pwd);
-            $("#saveBox").attr("checked",true);
-        }
-    })
-
-    // 자동로그인 쿠키생성으로 구현
-    function afterLogin(){
-        var id=$("#id").val();
-        var pwd=$("#password").val();
-        var isChecked=$("#saveBox").is(":checked");
-
-        if(id=="" || pwd==""){
-            return;
-        }
-        if(isChecked){
-            setCookie("Cookie_id",id);
-            setCookie("Cookie_pwd",pwd);
-        }
-        else{
-            deleteCookie("Cookie_id");
-            deleteCookie("Cookie_pwd");
-        }
-    }
-    // 쿠키생성함수
-    function setCookie(cookieName,value,exdays){
-        var exdate=new Date();
-        exdate.setDate(exdate.getDate()+exdays);
-        var cookieValue=escape(value)+((exdays==null)?"":"; expires="+exdate.toUTCString());
-        document.cookie=cookieName+"="+cookieValue;
-    }
-
-    function getCookie(cookie_name) {
-        var x, y;
-        var val = document.cookie.split(';');
-
-        for (var i = 0; i < val.length; i++) {
-            x = val[i].substr(0, val[i].indexOf('='));
-            y = val[i].substr(val[i].indexOf('=') + 1);
-            x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
-
-            if (x == cookie_name) {
-                return unescape(y); // unescape로 디코딩 후 값 리턴
+            if(error_value!=""){
+                if (JSON.parse(error_value)==true){
+                    showPopup(true,'#popup');
+                }
             }
-        }
-    }
-    //쿠키값 Delete
-    function deleteCookie(cookieName){
-        var expireDate = new Date();
-        expireDate.setDate(expireDate.getDate() - 1);
-        document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
-    }
+
+            // dom생성 뒤 아이디 비번에다가 쿠키있으면 쿠키에서 값을 가져와 넣어준다.
+            $(document).ready(function (){
+                var id=getCookie("Cookie_id");
+                var pwd=getCookie("Cookie_pwd");
+
+                if(id){
+                    $("#id").val(id);
+                    $("#password").val(pwd);
+                    $("#saveBox").attr("checked",true);
+                }
+            })
+
+            // 자동로그인 쿠키생성으로 구현
+            function afterLogin(){
+                var id=$("#id").val();
+                var pwd=$("#password").val();
+                var isChecked=$("#saveBox").is(":checked");
+
+                if(id=="" || pwd==""){
+                    return;
+                }
+                if(isChecked){
+                    setCookie("Cookie_id",id);
+                    setCookie("Cookie_pwd",pwd);
+                }
+                else{
+                    deleteCookie("Cookie_id");
+                    deleteCookie("Cookie_pwd");
+                }
+            }
+            // 쿠키생성함수
+            function setCookie(cookieName,value,exdays){
+                var exdate=new Date();
+                exdate.setDate(exdate.getDate()+exdays);
+                var cookieValue=escape(value)+((exdays==null)?"":"; expires="+exdate.toUTCString());
+                document.cookie=cookieName+"="+cookieValue;
+            }
+
+            function getCookie(cookie_name) {
+                var x, y;
+                var val = document.cookie.split(';');
+
+                for (var i = 0; i < val.length; i++) {
+                    x = val[i].substr(0, val[i].indexOf('='));
+                    y = val[i].substr(val[i].indexOf('=') + 1);
+                    x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+
+                    if (x == cookie_name) {
+                        return unescape(y); // unescape로 디코딩 후 값 리턴
+                    }
+                }
+            }
+            //쿠키값 Delete
+            function deleteCookie(cookieName){
+                var expireDate = new Date();
+                expireDate.setDate(expireDate.getDate() - 1);
+                document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+            }
 
 
-    function showPopup(hasFilter,id) {
-        const popup = document.querySelector(id);
+            function showPopup(hasFilter,id) {
+                const popup = document.querySelector(id);
 
-        if (hasFilter) {
-            popup.classList.add('has-filter');
-        } else {
-            popup.classList.remove('has-filter');
-        }
+                if (hasFilter) {
+                    popup.classList.add('has-filter');
+                } else {
+                    popup.classList.remove('has-filter');
+                }
 
-        popup.classList.remove('hide');
-    }
+                popup.classList.remove('hide');
+            }
 
-    function closePopup(id,state) {
-        const popup = document.querySelector(id);
-        popup.classList.add('hide');
+            function closePopup(id,state) {
+                const popup = document.querySelector(id);
+                popup.classList.add('hide');
 
-        if(state=="instruction"){
-            window.location="/instruction/history";
-        }
-    }
-</script>
+                if(state=="instruction"){
+                    window.location="/instruction/history";
+                }
+            }
+        </script>
 
 
 

@@ -86,27 +86,27 @@
 
                 <table class="table table-hover">
                     <thead class="head-background-rental-info">
-                    <tr >
-                        <th colspan=2 scope="col">💧결제내역💧</th>
-                    </tr>
+                        <tr >
+                            <th colspan=2 scope="col">💧결제내역💧</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr class="rental_info">
-                        <th scope="row">💸상품명:</th>
-                        <td>${ticketType}</td>
-                    </tr>
-                    <tr class="rental_info">
-                        <th scope="row">💸결제금액:</th>
-                        <td>${ticket_price}원</td>
-                    </tr>
-                    <tr class="rental_info">
-                        <th scope="row">💳결제수단:</th>
-                        <td>카카오페이</td>
-                    </tr>
-                    <tr class="rental_info">
-                        <th scope="row">📆결제시기:</th>
-                        <td>${paying_date}</td>
-                    </tr>
+                        <tr class="rental_info">
+                            <th scope="row">💸상품명:</th>
+                            <td>${ticketType}</td>
+                        </tr>
+                        <tr class="rental_info">
+                            <th scope="row">💸결제금액:</th>
+                            <td>${ticket_price}원</td>
+                        </tr>
+                        <tr class="rental_info">
+                            <th scope="row">💳결제수단:</th>
+                            <td>카카오페이</td>
+                        </tr>
+                        <tr class="rental_info">
+                            <th scope="row">📆결제시기:</th>
+                            <td>${paying_date}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

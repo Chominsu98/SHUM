@@ -27,7 +27,7 @@
 			font-size: 1.5em;
 			font-family: 'Do Hyeon';
 			list-style: disc;
-			margin: 0px 2em 2em 2em;
+			margin: 0px 1em 2em 0em;
 		}
 		.result_booth li{
 			margin:1em;
@@ -68,7 +68,7 @@
 			will-change: transform;
 			transform: translateZ(0);
 			display: flex;
-			height: 90px;
+			height: 7em;
 			box-shadow: 0 -2px 5px -2px #333;
 			background-color: #bc1215;
 		}
@@ -211,7 +211,7 @@
 									<div class="mobile-bottom-nav__item">
 										<div class="mobile-bottom-nav__item-content">
 											<div class="d-grid gap-2 mx-auto">
-												<button class="btn btn-primary center_home_button" onclick="location.href='/map/nearBoothPage'"><i class="zmdi zmdi-check-circle"></i>확인</button>
+												<button class="btn btn-primary center_home_button" onclick="location.href='/map/nearBoothPage'"><i class="zmdi zmdi-check-circle"></i>리스트</button>
 											</div>
 										</div>
 									</div>
@@ -256,7 +256,7 @@
 					<span class="login100-form-title p-b-26">
 						부스검색
 					</span>
-						<span class="login100-form-title p-b-48">
+						<span class="login100-form-title">
 							<i class="zmdi zmdi-google-maps"></i>
             			</span>
 						<p class="notify">원하시는 부스를 검색하세요</p>
@@ -281,7 +281,7 @@
 						<span class="login100-form-title p-b-26">
 							검색결과
 						</span>
-						<span class="login100-form-title p-b-48">
+						<span class="login100-form-title">
 							<i class="zmdi zmdi-google-maps"></i>
             			</span>
 
@@ -336,8 +336,8 @@
 	var reload_mobile=document.getElementById("reload_mobile");
 	var nav_bar=document.getElementsByClassName("mobile-bottom-nav");
 	var search_scope=document.getElementById("search_scope");
-
-	if(matchMedia("screen and (min-width: 736px)").matches){//웹사이즈뷰일때
+	var varUA = navigator.userAgent.toLowerCase();
+	if(matchMedia("screen and (min-width: 736px)").matches){//웹사이즈뷰일때-딱 들어오자마자 이 사이즈일때만 구동됌-따라서 새로고침필요
 		$("#map").prepend("<div class='reload' id='mylocation_websize' > <img src='/images/map/reload.png' alt='새로고침'> </div>");//웹사이즈때의 전용 버튼태그 추가
 		$("#map").prepend("<div class='getMyPos' id='reload_websize' > <img src='/images/map/getMyPos.png' alt='내 위치로 화면 이동'> </div>");
 		mylocation_mobile.remove();//모바일 용 버튼들은 잠시 삭제
@@ -352,6 +352,12 @@
 	}
 
 	window.onresize=function (event){
+		if(varUA.indexOf("android")>-1){//안드로이드 모바일 기기시에는 키보드가 열릴시 화면의 크기 변함
+			$("#booth_name").click(function (){
+				return;
+			})
+			return;
+		}
 		location.reload();
 	}
 
