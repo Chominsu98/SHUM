@@ -14,7 +14,7 @@ spring:
       
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/shum?serverTimezone=Asia/Seoul
+    url: jdbc:mariadb://211.109.120.65:80/shum?serverTimezone=Asia/Seoul
     username: root
     password: root1234
     
