@@ -154,6 +154,7 @@ if (navigator.geolocation) {
         map.setCenter(locPosition)
 
         displayMarker();
+        getUserPos();
     });
 } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
     alert('error');
@@ -161,7 +162,7 @@ if (navigator.geolocation) {
 
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다
 function displayMarker() {
-    var imageSrc = "/images/map/ping.png";
+    var imageSrc = "/images/map/umbrella.png";
     var imageSize = new kakao.maps.Size(40, 50);
     //부스 위치 마커를 생성합니다.
     for (var i = 0; i < positions.length; i++) {
@@ -213,18 +214,12 @@ function displayMarker() {
             e.parentElement.parentElement.style.border = "0px";
             e.parentElement.parentElement.style.background = "unset";
         });
-
-    setInterval(function(){
-        getUserPos();
-    }, 1000);
-
-    //getUserPos(myPos);
 }
 
 function getUserPos() {
     if (navigator.geolocation) {
+        function success(pos) {
         // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-        navigator.geolocation.getCurrentPosition(function(pos) {
             var lat = pos.coords.latitude, // 위도
                 lon = pos.coords.longitude; // 경도
             locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다.(내 위치)
@@ -240,9 +235,19 @@ function getUserPos() {
                 position: locPosition,
                 image: myMarkerImage
             });
-        });
-    } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-        alert('error');
+        }
+
+        function error(err) {
+         console.log("에러");
+        }
+
+        options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        }
+
+        var id = navigator.geolocation.watchPosition(success, error, options);
     }
 }
 

@@ -88,6 +88,10 @@
             box-shadow: inset 0 0 0 0px #fff;
 
         }
+        canvas{
+            width:100%;
+        }
+
     </style>
 </head>
 <body class="is-preload">
@@ -335,6 +339,13 @@
 
 <script type="text/javascript">
 
+    var varUA = navigator.userAgent.toLowerCase();//운영체제 파악
+
+    if(varUA.indexOf('android')>-1){
+        //안드로이드
+        document.getElementById("qrcode").classList.add("android_qr");
+
+    }
     var code='<c:out value="${voucher.reservationCode}"/> '
     var qrcode = new QRCode(document.getElementById("qrcode"), {
         width : 100,
