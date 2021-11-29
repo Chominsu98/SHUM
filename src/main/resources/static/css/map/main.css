@@ -11,7 +11,8 @@ li {
 
 #map {
     width:100%;
-    height: 83vh;
+    height: 76vh;
+    /*맵 지도 크기를 결정한다*/
 }
 
 .booth_info {
