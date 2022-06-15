@@ -2,6 +2,9 @@
 
 https://www.youtube.com/watch?v=ZzrkFwgQALI
 
+##최종개발 피피티
+
+https://docs.google.com/presentation/d/1lZCFkSYd66XyBWmbA6k4KRyqURTwDXTU/edit?usp=sharing&ouid=115018909941775074726&rtpof=true&sd=true
 
 <✔민수개발부분>
 
