@@ -54,12 +54,14 @@ Spring과 JSP를 기반으로 sw적인 서비스를 개발하고 Aruduino를 통
 
 2. 우산대여를 위해서는 이용권을 구매후 키오스크 앞에서 이용권을 스캔해주세요!
 
+
+
 ### 📱하이브리드 앱 예제
-<img src="https://im5.ezgif.com/tmp/ezgif-5-fda71773df.gif" height="500" /><img src="https://im5.ezgif.com/tmp/ezgif-5-4e826ea80f.gif" height="500" /><img src="https://im5.ezgif.com/tmp/ezgif-5-f079d29b13.gif" height="500" />
+<img src="https://user-images.githubusercontent.com/37100067/199914101-8241cc34-7f67-442d-9cc7-0010e1ac2fc3.gif" height="500" /><img src="https://user-images.githubusercontent.com/37100067/199919566-8b0fbaba-0341-4792-81ca-c4e8dd499f01.gif" height="500" /><img src="https://user-images.githubusercontent.com/37100067/199919711-56d654e0-c00a-4bc2-bead-fd51ff071d52.gif" height="500" />
 
 ### 🎥키오스크 및 대여예제
 
-<img src="https://im5.ezgif.com/tmp/ezgif-5-3ce8169211.gif" height="500" />
+<img src="https://user-images.githubusercontent.com/37100067/199919368-72bbae2e-b2a1-4dca-990e-4af699e97489.gif" height="500" />
 
 
 
