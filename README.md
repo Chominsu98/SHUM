@@ -50,11 +50,16 @@ Spring과 JSP를 기반으로 sw적인 서비스를 개발하고 Aruduino를 통
 
 ## :printer:사용 예제
 
-1. 서비스를 사용하기 위해서는 우선적으로 회원가입을 진행해주시고 이용해주세요!
+1. 서비스를 사용하기 위해서는 회원가입 후 주위에 가까운 부스 위치들을 확인해 우산을 찾으세요!
 
-2. 루틴추천을 받기위해서는 개인 정보와 체력평가를 꼭 우선 수행해주세요!
+2. 우산대여를 위해서는 이용권을 구매후 키오스크 앞에서 이용권을 스캔해주세요!
 
-<img src="https://user-images.githubusercontent.com/37100067/178108973-fbe54e55-22a7-4c00-8828-bba90cf8a619.gif" height="500" /><img src="https://user-images.githubusercontent.com/37100067/178110084-92184feb-2192-46f2-901c-a98b7a409829.gif" height="500" /><img src="https://user-images.githubusercontent.com/37100067/178113892-3797edcd-fbb6-499c-bc45-5d99fc9ad100.gif" height="500" />
+### 📱하이브리드 앱 예제
+<img src="https://im5.ezgif.com/tmp/ezgif-5-fda71773df.gif" height="500" /><img src="https://im5.ezgif.com/tmp/ezgif-5-4e826ea80f.gif" height="500" /><img src="https://im5.ezgif.com/tmp/ezgif-5-f079d29b13.gif" height="500" />
+
+### 🎥키오스크 및 대여예제
+
+<img src="https://im5.ezgif.com/tmp/ezgif-5-3ce8169211.gif" height="500" />
 
 
 
@@ -62,38 +67,29 @@ Spring과 JSP를 기반으로 sw적인 서비스를 개발하고 Aruduino를 통
 
 원활한 사용을 위해서는 
 <a href="https://github.com/PockeTrainer/Pocket_Trainer_Server.git">(BackEnd)Server</a>또한 참고해보세요 
-```sh
-make install 또는 yarn install
-npm start 또는 yarn start
-```
+
+App단의 서버와 Kiosk의 서버를 둘 다 켜주세요
 
 ## :watch:업데이트 내역
 
-* 1.0.1(미정)
-   * 리팩토링 예정
-* 1.0.0(05.26)
+* 1.0.0(12.16)
     * 1차 최종판 릴리즈
 
 
 ## :technologist:개발자정보
 
-* :technologist:조민수 –<a href="https://github.com/Chominsu98/"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"></a><a href="https://velog.io/@woo0_hooo"><img src="https://img.shields.io/badge/Tech%20Blog-11B48A?style=flat-square&logo=Vimeo&logoColor=white&link=https://velog.io/@woo0_hooo"/></a>
+* :technologist:조민수(FE개발) –<a href="https://github.com/Chominsu98/"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"></a><a href="https://velog.io/@woo0_hooo"><img src="https://img.shields.io/badge/Tech%20Blog-11B48A?style=flat-square&logo=Vimeo&logoColor=white&link=https://velog.io/@plugnplay"/></a>
 
-* :technologist:권준우–<a href="https://github.com/top7578"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"></a><a href="https://velog.io/@woo0_hooo"><img src="https://img.shields.io/badge/Tech%20Blog-11B48A?style=flat-square&logo=Vimeo&logoColor=white&link=https://velog.io/@woo0_hooo"/></a>
+* :technologist:권준우(Arduino개발)–<a href="https://github.com/top7578"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"></a><a href="https://velog.io/@woo0_hooo"><img src="https://img.shields.io/badge/Tech%20Blog-11B48A?style=flat-square&logo=Vimeo&logoColor=white&link=https://velog.io/@woo0_hooo"/></a>
 
-* :technologist:임정상–<a href="https://github.com/Oneul1213"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"></a><a href="https://velog.io/@oneul1213"><img src="https://img.shields.io/badge/Tech%20Blog-11B48A?style=flat-square&logo=Vimeo&logoColor=white&link=https://velog.io/@woo0_hooo"/></a>
+* :technologist:김두열(BE개발)–<a href="https://github.com/enduf7686"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"></a><a href="https://velog.io/@woo0_hooo"><img src="https://img.shields.io/badge/Tech%20Blog-11B48A?style=flat-square&logo=Vimeo&logoColor=white&link=https://velog.io/@woo0_hooo"/></a>
 
-* :technologist:김두열–<a href="https://github.com/enduf7686"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"></a><a href="https://velog.io/@woo0_hooo"><img src="https://img.shields.io/badge/Tech%20Blog-11B48A?style=flat-square&logo=Vimeo&logoColor=white&link=https://velog.io/@woo0_hooo"/></a>
-
-* :technologist:이재하–<a href="https://github.com/jaehawilly"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"></a><a href="https://velog.io/@jaehawilly"><img src="https://img.shields.io/badge/Tech%20Blog-11B48A?style=flat-square&logo=Vimeo&logoColor=white&link=https://velog.io/@woo0_hooo"/></a>
+* 👩‍🎨양지원(QA및시장조사)–<a href="https://github.com/enduf7686"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"></a><a href="https://velog.io/@woo0_hooo"><img src="https://img.shields.io/badge/Tech%20Blog-11B48A?style=flat-square&logo=Vimeo&logoColor=white&link=https://velog.io/@woo0_hooo"/></a>
 
 > 포켓트레이너 프로젝트와 연관 Repository
 
-> <a href="https://github.com/PockeTrainer/Pocket_Trainer_Server.git">:man_technologist:(BackEnd) Server</a>
+> <a href="https://github.com/Chominsu98/SHUM_kiosk">:man_technologist:(KIOSK)개발</a>
 
-> <a href="https://github.com/PockeTrainer/Pocket_Trainer_Model">:robot: (AI) Model</a>
-
-> <a href="https://github.com/PockeTrainer/Pocket_Trainer_iOS">:iphone: (Ios) Native-App</a>
 
 
 
@@ -116,21 +112,25 @@ npm start 또는 yarn start
 
 ## :keyboard:참고한 OpenSource
 
-1. <a href="https://www.npmjs.com/package/react-horizontal-datepicker"><img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">(Component)구성-HorizontalDatePicker</a>
+1. <a href="https://github.com/cozmo/jsQR">(qr코드인식)JsQr</a>
 
-2. <a href="https://mui.com/"><img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">(Component)구성-UI라이브러리</a>
+2. <a href="https://code.google.com/archive/p/java-simple-serial-connector/">(Arduino Java 시리얼통신)-jssc라이브러리</a>
 
-3. <a href="https://devexpress.github.io/devextreme-reactive/react/scheduler/docs/guides/getting-started/"><img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">(Component)구성-Scheduler,Chart</a>
+3. <a href="https://www.iamport.kr/">(카카오페이결제)-Import</a>
 
-4. <a href="https://www.creative-tim.com/product/argon-dashboard"><img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">(Component)구성-반응형 레이아웃</a>
+4. <a href="https://html5up.net/spectral">반응형 레이아웃구성</a>
 
 
 
 ## :roll_of_paper:추가판넬자료
 
-https://drive.google.com/file/d/18B1whDcwz5KmK2FqZaZAn1tmMmeW0OHe/view?usp=sharing
+[https://drive.google.com/file/d/18B1whDcwz5KmK2FqZaZAn1tmMmeW0OHe/view?usp=sharing](https://drive.google.com/file/d/18B1whDcwz5KmK2FqZaZAn1tmMmeW0OHe/view?usp=share_link)
 
 ## :trophy:최종결과물
 
-<img src="https://user-images.githubusercontent.com/39055981/178031983-77292b00-2f99-41cb-b8b8-d01df8efda42.jpg" width="50%" >
+<img src="https://user-images.githubusercontent.com/37100067/199903037-8de7a612-0579-4e5f-80ec-3f62ba6f11cb.jpg" width="50%" >
+
+## 📢기타 홍보자료
+
+<img src="https://user-images.githubusercontent.com/37100067/199903707-5b77ebe2-4d94-470e-a690-2c099d6b425d.jpg" width="30%" /><img src="https://user-images.githubusercontent.com/37100067/199903756-93be1fdf-bebb-452e-be6b-e9c21fa66436.jpg" width="30%" /><img src="https://user-images.githubusercontent.com/37100067/199903777-25ce2e7f-a191-426a-a4ea-ee25275c5c2d.jpg" width="30%" />
 
